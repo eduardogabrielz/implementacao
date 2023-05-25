@@ -1,0 +1,70 @@
+<ion-header [translucent]="true" class="header">
+  <ion-toolbar>
+    <ion-title class="titulo">
+      AGENDAMENTO
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button class="icone-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="conteudo">
+  <ion-grid class="form-agendamento" >
+    <ion-list>
+      <ion-row >
+        <p>Agende sua monitoria: </p>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Data:
+        </ion-col>
+        <ion-col>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-select label="Selecione as matérias disponíveis" label-placement="floating" fill="outline">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <ion-row>
+        <ion-select label="Selecione os professores disponíveis" label-placement="floating" fill="outline">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <ion-row>
+        <ion-textarea class="textarea" label="Dúvidas para monitoria:" labelPlacement="floating" fill="solid" placeholder="Descreva suas dúvidas ao professor."></ion-textarea>
+      </ion-row>
+    </ion-list>
+    
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer [translucent]="true" class="navebar">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="4" class="icones">
+        <ion-icon name="home" size="large"></ion-icon>
+      </ion-col>
+
+      <ion-col size="4" class="icones">
+        <ion-icon name="calendar" size="large"></ion-icon>
+      </ion-col>
+
+      <ion-col size="4" class="icones">
+        <ion-icon name="chatbubbles" size="large"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,53 @@
+<ion-header [translucent]="true" class="header">
+  <ion-toolbar>
+    <ion-title class="titulo">
+      Materias
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button class="icone-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- conteudo do centro -->
+<ion-content class="conteudo">
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col size="12" class="materias">
+      Selecione a matéria desejada:
+    </ion-col>
+  </ion-row>
+  
+  <!-- colunas das materias -->
+  <ion-grid>
+    <ion-row class="retangulo">
+      <ion-col size="11">Português</ion-col>
+      <ion-col size="11">Literatura</ion-col>
+      <ion-col size="11">Redação</ion-col>
+      <ion-col size="11">Matematica</ion-col>
+      <ion-col size="11">Quimica</ion-col>
+      <ion-col size="11">Fisica</ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<!-- botoes de baixo -->
+<ion-footer [translucent]="true" class="footer">
+  <ion-toolbar>
+    <ion-row>
+
+      <ion-col size="4" class="icones" (click)="goHome()">
+        <ion-icon name="home" size="large"></ion-icon>
+      </ion-col>
+
+      <ion-col size="4" class="icones">
+        <ion-icon name="calendar" size="large"></ion-icon>
+      </ion-col>
+
+      <ion-col size="4" class="icones">
+        <ion-icon name="chatbubbles" size="large"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

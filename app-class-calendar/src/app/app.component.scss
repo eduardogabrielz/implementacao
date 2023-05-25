@@ -1,0 +1,21 @@
+.menu-background {
+    height: 60px;
+    width:full;
+    background: rgb(3, 199, 3);
+
+
+}
+.menu-item{
+    margin:0px;
+
+    ion-icon{
+        margin-right:10px;
+        color: rgb(3, 199, 3);
+    }
+
+    ion-item{
+        padding-left: 10px;
+        margin-bottom:5px;
+    }
+
+}

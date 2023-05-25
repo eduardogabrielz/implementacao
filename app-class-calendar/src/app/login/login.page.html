@@ -1,0 +1,64 @@
+<ion-header [translucent]="false">
+  <ion-toolbar class="navebar">
+    <ion-title>
+      CLASSCALENDAR
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="login">
+    <ion-row>
+      <ion-col>
+        <h1 class="ion-text-center">LOGIN</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="center-icon" size="1">
+        <ion-icon style="zoom:1.3;" name="file-tray-full-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="CPF" labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
+            maxlength="11" type="text" id="cpf" name="cpf"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="center-icon" size="1">
+        <ion-icon style="zoom:1.3;" name="key-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-label>
+          <ion-input label="SENHA" type="password" label-placement="floating" fill="outline"
+            placeholder="Digite sua senha" id="password" name="password"></ion-input>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="link">
+        <a href="">Esqueceu a senha</a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-item>
+        <ion-label>Selecione o tipo:</ion-label>
+        <ion-select [(ngModel)]="userType">
+          <ion-select-option value="professor">Professor</ion-select-option>
+          <ion-select-option value="tecnico">Técnico</ion-select-option>
+          <ion-select-option value="aluno">Aluno</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center button">
+        <ion-button class="button" (click)="goTeste(userType)" (click)="goHome()"  size="default" expand="full" type="submit"> Entrar </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
