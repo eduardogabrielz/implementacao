@@ -6,12 +6,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; /* importação 
 })
 export class CadastroFormService {
 
-  public host: string = 'http://localhost:8080/api/aluno';
+  public host: string = 'http://localhost:8080/api/';
   public options: any = { headers: new HttpHeaders({'Content-Type':'application/json;charset=UTF-8'})}
   
   constructor(private http: HttpClient) {}
 
-  public postDados(obj: any){
+  public postDados(obj: any, userType:any){
+    this.atualizaHost(userType)
     return new Promise((ret) => {
 
       this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
@@ -20,4 +21,7 @@ export class CadastroFormService {
       })
     }
 
+  public atualizaHost(userType:any){
+    return this.host = this.host + userType
+  }
 }

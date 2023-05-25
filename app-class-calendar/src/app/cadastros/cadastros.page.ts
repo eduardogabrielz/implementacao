@@ -14,11 +14,12 @@ export class CadastrosPage implements OnInit {
   telefone: any
   turma: any
   cpf: any
-  
+  userType: any
+
   constructor(private service: CadastroFormService) {   
   }
 
-  public salvaUsuario(){
+  public salvaAluno(){
     let newObj:any = {    
       cpf   : this.cpf,
       endereco : this.endereco,
@@ -29,11 +30,44 @@ export class CadastrosPage implements OnInit {
       turma : this.turma
     }
 
-    this.service.postDados(newObj).then((newObj) => {
+    this.service.postDados(newObj, this.userType).then((newObj) => {
       console.log(newObj)
     })
 
   }
+
+  public salvaProfessor(){
+    let newObj:any = {    
+      cpf   : this.cpf,
+      endereco : this.endereco,
+      nome  : this.nome,
+      senha : this.senha,
+      status : true,
+      telefone : this.telefone,
+    }
+
+    this.service.postDados(newObj, this.userType).then((newObj) => {
+      console.log(newObj)
+    })
+
+  }
+
+  public salvaTecnico(){
+    let newObj:any = {    
+      cpf   : this.cpf,
+      endereco : this.endereco,
+      nome  : this.nome,
+      senha : this.senha,
+      status : true,
+      telefone : this.telefone,
+    }
+
+    this.service.postDados(newObj, this.userType).then((newObj) => {
+      console.log(newObj)
+    })
+
+  }
+
   ngOnInit() {
   }
 
