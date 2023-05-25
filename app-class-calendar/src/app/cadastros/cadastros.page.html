@@ -14,12 +14,8 @@
       </ion-col>
     </ion-row>
 
-    <!-- <ion-item>
-      <ion-input [(ngModel)]="nome" label="Nome:" labelPlacement="floating"></ion-input>
-    </ion-item>
-
     <ion-item>
-      <ion-input [(ngModel)]="cpf" label="Cpf:" labelPlacement="floating"></ion-input>
+      <ion-input [(ngModel)]="nome" label="Nome:" labelPlacement="floating"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -27,37 +23,26 @@
     </ion-item>
 
     <ion-item>
+      <ion-input [(ngModel)]="cpf" label="Cpf:" type="Text" maxlength="11" labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-input [(ngModel)]="turma" label="Turma:" labelPlacement="floating"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input [(ngModel)]="telefone" label="Telefone:" labelPlacement="floating"></ion-input>
-    </ion-item> -->
-
-    <!-- <ion-item>
       <ion-input [(ngModel)]="endereco" label="Endereço:" labelPlacement="floating"></ion-input>
-    </ion-item> -->
+    </ion-item> 
 
-    <!-- <ion-row class="ion-justify-content-center">
-      <ion-item>
-        <ion-label>Selecione o tipo:</ion-label>
-        <ion-select [(ngModel)]="userType">
-          <ion-select-option value="professor">Professor</ion-select-option>
-          <ion-select-option value="tecnico">Técnico</ion-select-option>
-          <ion-select-option value="aluno">Aluno</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-row> -->
+    <ion-item>
+      <ion-input [(ngModel)]="telefone" label="Telefone:" type="tel" placeholder="(00)-_____-____" maxlength="11" labelPlacement="floating"></ion-input>
+    </ion-item>
+
+
 
     <ion-row>
       <ion-col class="ion-text-center button">
-        <ion-button class="button" (click)="salvaUsuario()" size="default" expand="full" type="submit"> Entrar </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="2" class="ion-text-center">
-        <ion-button color="primary" (click)="getAllDados()"> GET ALL </ion-button>
+        <ion-button class="button" (click)="salvaUsuario()" size="default" expand="full" type="submit"> Cadastrar </ion-button>
       </ion-col>
     </ion-row>
 

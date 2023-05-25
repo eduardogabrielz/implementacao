@@ -8,18 +8,25 @@ import { Component, OnInit, NgModule } from '@angular/core';
 })
 export class CadastrosPage implements OnInit {
 
+  nome : any
+  endereco : any
+  senha: any
+  telefone: any
+  turma: any
+  cpf: any
+  
   constructor(private service: CadastroFormService) {   
   }
 
   public salvaUsuario(){
     let newObj:any = {    
-      cpf   : '414141',
-      endereco : 'rua das dalias',
-      nome  : 'carlos',
-      senha : 'abacaxi',
+      cpf   : this.cpf,
+      endereco : this.endereco,
+      nome  : this.nome,
+      senha : this.senha,
       status : true,
-      telefone : '141414',
-      turma : '5° ESW'
+      telefone : this.telefone,
+      turma : this.turma
     }
 
     this.service.postDados(newObj).then((newObj) => {
@@ -27,16 +34,6 @@ export class CadastrosPage implements OnInit {
     })
 
   }
-  
-  public alertButtons = ['OK'];
-
-  public getAllDados(){
-    this.service.getAllDados().then(dados => {
-      console.log('GET ALL DADOS');
-      console.log(dados);
-    })
-  }
-
   ngOnInit() {
   }
 

@@ -20,17 +20,4 @@ export class CadastroFormService {
       })
     }
 
-
-  public getAllDados(){
-    return new Promise((ret) => {
-
-      // requisição GET
-      this.http.get(this.host).subscribe(dados => {
-
-        ret(dados);
-
-      });
-    })
-  }
-  
 }
