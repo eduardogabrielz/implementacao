@@ -15,6 +15,6 @@ import { ProfessorPage } from './professor.page';
     IonicModule,
     ProfessorPageRoutingModule
   ],
-  declarations: []
+  declarations: [ProfessorPage]
 })
 export class ProfessorPageModule {}

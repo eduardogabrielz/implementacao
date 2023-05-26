@@ -43,7 +43,7 @@ export class CadastrosPage implements OnInit {
   }
 
   public salvaProfessor(){
-    let newObj:any = {    
+    let newObj:any = {  
       cpf   : this.cpf,
       endereco : this.endereco,
       nome  : this.nome,

@@ -28,20 +28,21 @@ const routes: Routes = [
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
-    path: 'professor',
-    loadChildren: () => import('./professor/professor.module').then( m => m.ProfessorPageModule)
-  },
-  {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
   {
     path: 'dados',
     loadChildren: () => import('./dados/dados.module').then( m => m.DadosPageModule)
-  },  {
+  },
+  {
     path: 'cadastros',
     loadChildren: () => import('./cadastros/cadastros.module').then( m => m.CadastrosPageModule)
+  },  {
+    path: 'professor',
+    loadChildren: () => import('./professor/professor.module').then( m => m.ProfessorPageModule)
   }
+
 
 
 ];
