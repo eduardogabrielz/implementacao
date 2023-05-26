@@ -8,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DadosPage {
 
+  itens : any
   constructor(private service: DadosService) {  }
 
   /* recupera todos os objetos do banco */
   public getAllDados(){
     this.service.getAllDados().then(dados => {
-      console.log('GET ALL DADOS');
-      console.log(dados);
+      this.itens = dados;
     })
+  }
+
+  ngOnInit(){
+    this.getAllDados()
   }
 }

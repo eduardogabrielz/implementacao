@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; /* importação 
 export class DadosService {
   /* API gratuita para tratamento de JSON  */
   /* api de objetos JSON */
-  public host = 'http://localhost:8080/api/horarios';
+  public host = 'http://localhost:8080/api/professores';
 
   constructor(private http: HttpClient) { }
 

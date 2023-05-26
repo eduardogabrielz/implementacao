@@ -32,6 +32,12 @@ export class CadastrosPage implements OnInit {
 
     this.service.postDados(newObj, this.userType).then((newObj) => {
       console.log(newObj)
+      this.cpf = ''
+      this.endereco = ''
+      this.nome = ''
+      this.senha = ''
+      this.telefone = ''
+      this.turma = ''
     })
 
   }
@@ -48,6 +54,11 @@ export class CadastrosPage implements OnInit {
 
     this.service.postDados(newObj, this.userType).then((newObj) => {
       console.log(newObj)
+      this.cpf = ''
+      this.endereco = ''
+      this.nome = ''
+      this.senha = ''
+      this.telefone = ''
     })
 
   }
@@ -64,6 +75,11 @@ export class CadastrosPage implements OnInit {
 
     this.service.postDados(newObj, this.userType).then((newObj) => {
       console.log(newObj)
+      this.cpf = ''
+      this.endereco = ''
+      this.nome = ''
+      this.senha = ''
+      this.telefone = ''
     })
 
   }

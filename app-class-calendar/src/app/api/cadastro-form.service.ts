@@ -22,6 +22,13 @@ export class CadastroFormService {
     }
 
   public atualizaHost(userType:any){
-    return this.host = this.host + userType
+    const userTypePath = '/' + userType 
+
+  if (!this.host.includes(userTypePath)) {
+    const slashIndex = this.host.lastIndexOf('/');
+    const pathWithoutSlash = this.host.slice(0, slashIndex);
+    this.host = pathWithoutSlash + userTypePath;
+
+  }
   }
 }
