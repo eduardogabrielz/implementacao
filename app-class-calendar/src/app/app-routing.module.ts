@@ -24,26 +24,32 @@ const routes: Routes = [
     loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
   },
   {
-    path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
-  {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-  },
-  {
-    path: 'dados',
-    loadChildren: () => import('./dados/dados.module').then( m => m.DadosPageModule)
-  },
-  {
     path: 'cadastros',
     loadChildren: () => import('./cadastros/cadastros.module').then( m => m.CadastrosPageModule)
-  },  {
+  },
+  {
     path: 'professor',
     loadChildren: () => import('./professor/professor.module').then( m => m.ProfessorPageModule)
+  },
+  {
+    path: 'dados-aluno',
+    loadChildren: () => import('./dados-aluno/dados-aluno.module').then( m => m.DadosAlunoPageModule)
+  },
+  {
+    path: 'dados-professor',
+    loadChildren: () => import('./dados-professor/dados-professor.module').then( m => m.DadosProfessorPageModule)
+  },
+  {
+    path: 'dados-tecnico',
+    loadChildren: () => import('./dados-tecnico/dados-tecnico.module').then( m => m.DadosTecnicoPageModule)
+  },
+  {
+    path: 'aluno',
+    loadChildren: () => import('./aluno/aluno.module').then( m => m.AlunoPageModule)
+  },  {
+    path: 'tecnico',
+    loadChildren: () => import('./tecnico/tecnico.module').then( m => m.TecnicoPageModule)
   }
-
-
 
 ];
 

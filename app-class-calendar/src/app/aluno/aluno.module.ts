@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DadosPageRoutingModule } from './dados-routing.module';
+import { AlunoPageRoutingModule } from './aluno-routing.module';
 
-import { DadosPage } from './dados.page';
+import { AlunoPage } from './aluno.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DadosPageRoutingModule
+    AlunoPageRoutingModule
   ],
-  declarations: [DadosPage]
+  declarations: [AlunoPage]
 })
-export class DadosPageModule {}
+export class AlunoPageModule {}

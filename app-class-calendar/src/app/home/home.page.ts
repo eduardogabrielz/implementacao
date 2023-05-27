@@ -9,7 +9,20 @@ import { IonicModule, NavController } from '@ionic/angular';
 export class HomePage {
   constructor(private navCtrl: NavController) {}
 
-  goPerfil(){
-    this.navCtrl.navigateForward('perfil')
+  goCadastro(){
+    this.navCtrl.navigateForward('cadastros')
   }
+
+  goProfessores(){
+    this.navCtrl.navigateForward('dados-professor')
+  }
+  
+  goAlunos(){
+    this.navCtrl.navigateForward('dados-aluno')
+  }
+
+  goTecnicos(){
+    this.navCtrl.navigateForward('dados-tecnico')
+  }
+
 }

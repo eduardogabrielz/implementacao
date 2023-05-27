@@ -7,19 +7,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; /* importação 
 export class DadosService {
   /* API gratuita para tratamento de JSON  */
   /* api de objetos JSON */
-  public host = 'http://localhost:8080/api/professores';
-
+  public host: string = 'http://localhost:8080/api/';
+ 
   constructor(private http: HttpClient) { }
 
-  public getAllDados(){
+  public getAllDados(userType:any){
     return new Promise((ret) => {
-
-      // requisição GET
+      this.atualizaHost(userType)
       this.http.get(this.host).subscribe(dados => {
 
         ret(dados);
 
       });
     })
+  }
+
+  public atualizaHost(userType:any){
+    const userTypePath = '/' + userType 
+
+  if (!this.host.includes(userTypePath)) {
+    const slashIndex = this.host.lastIndexOf('/');
+    const pathWithoutSlash = this.host.slice(0, slashIndex);
+    this.host = pathWithoutSlash + userTypePath;
+
+  }
   }
 }

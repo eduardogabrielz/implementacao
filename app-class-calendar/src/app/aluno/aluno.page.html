@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button text="Voltar"></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalhes do Professor</ion-title>
+    <ion-title>Detalhes do Aluno</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label>ID do Professor: {{ professor.idProfessor }}</ion-label>
+    <ion-label>ID do Aluno: {{ aluno.idAluno }}</ion-label>
     <ion-input disabled></ion-input>
   </ion-item>
 
@@ -34,9 +34,15 @@
   </ion-item>
 
   <ion-item>
+    <ion-label>Turma:</ion-label>
+    <ion-input [(ngModel)]="turmaATT"></ion-input>
+  </ion-item>
+
+  <ion-item>
     <ion-label>Senha:</ion-label>
     <ion-input [(ngModel)]="senhaATT"></ion-input>
   </ion-item>
 
   <ion-button expand="full" (click)="atualizar()">Salvar</ion-button>
 </ion-content>
+

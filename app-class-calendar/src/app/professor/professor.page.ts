@@ -18,6 +18,7 @@ export class ProfessorPage implements OnInit {
   enderecoATT: any;
   senhaATT: any;
   status: any;
+  teste:any;
 
   constructor(private route: ActivatedRoute, private service: EditarFormService) {}
   

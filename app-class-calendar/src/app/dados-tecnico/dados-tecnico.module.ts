@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MenuPageRoutingModule } from './menu-routing.module';
+import { DadosTecnicoPageRoutingModule } from './dados-tecnico-routing.module';
 
-import { MenuPage } from './menu.page';
+import { DadosTecnicoPage } from './dados-tecnico.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuPageRoutingModule
+    DadosTecnicoPageRoutingModule
   ],
-  declarations: [MenuPage]
+  declarations: [DadosTecnicoPage]
 })
-export class MenuPageModule {}
+export class DadosTecnicoPageModule {}

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PerfilPageRoutingModule } from './perfil-routing.module';
+import { DadosProfessorPageRoutingModule } from './dados-professor-routing.module';
 
-import { PerfilPage } from './perfil.page';
+import { DadosProfessorPage } from './dados-professor.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilPageRoutingModule
+    DadosProfessorPageRoutingModule
   ],
-  declarations: []
+  declarations: [DadosProfessorPage]
 })
-export class PerfilPageModule { }
+export class DadosProfessorPageModule {}

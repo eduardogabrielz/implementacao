@@ -1,48 +1,27 @@
-<ion-header [translucent]="true" class="header">
+<ion-header translucent="true" class="header">
   <ion-toolbar>
     <ion-title class="titulo">
       CLASSCALENDAR
     </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button class="icone-menu"></ion-menu-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="conteudo">
-  <ion-row>
-    <ion-col></ion-col>
-    <ion-col size="12" class="agendamento">
-      Nenhum agendamento confirmado!
-    </ion-col>
-    <ion-col size="12" class="link">
-      <a href="">Agendar monitoria</a>
-    </ion-col>
-  </ion-row>
+<ion-content>
 
-   <!-- botao do canto -->
-  <ion-fab class="butao" slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button color="success" size="large">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-row>
+
+    <ion-col size="2">
+      <ion-button expand="block" size="large" color="dark" shape="round" (click)="goCadastro()">Cadastro</ion-button>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button expand="block" size="large" color="danger" shape="round" (click)="goProfessores()">Lista Professores</ion-button>
+    </ion-col>
+    <ion-col size="2">  
+      <ion-button expand="block" size="large" color="warning" shape="round" (click)="goAlunos()">Lista Alunos</ion-button>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button expand="block" size="large" color="success" shape="round" (click)="goTecnicos()">Lista Técnicos</ion-button>
+    </ion-col>
+    </ion-row>
 
 </ion-content>
-
-<ion-footer [translucent]="true" class="navebar">
-  <ion-toolbar>
-    <ion-row>
-      <ion-col size="4" class="icones">
-        <ion-icon name="home" size="large"></ion-icon>
-      </ion-col>
-
-      <ion-col size="4" class="icones">
-        <ion-icon name="calendar" size="large"></ion-icon>
-      </ion-col>
-
-      <ion-col size="4" class="icones">
-        <ion-icon name="chatbubbles" size="large"></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>

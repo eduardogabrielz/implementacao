@@ -14,7 +14,7 @@ export class CadastrosPage implements OnInit {
   telefone: any
   turma: any
   cpf: any
-  userType: any
+  userType: any 
 
   constructor(private service: CadastroFormService) {   
   }

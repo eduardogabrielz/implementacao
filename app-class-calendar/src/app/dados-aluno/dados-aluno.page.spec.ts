@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MenuPage } from './menu.page';
+import { DadosAlunoPage } from './dados-aluno.page';
 
-describe('MenuPage', () => {
-  let component: MenuPage;
-  let fixture: ComponentFixture<MenuPage>;
+describe('DadosAlunoPage', () => {
+  let component: DadosAlunoPage;
+  let fixture: ComponentFixture<DadosAlunoPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(MenuPage);
+    fixture = TestBed.createComponent(DadosAlunoPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
