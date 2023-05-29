@@ -21,14 +21,34 @@ export class CadastroFormService {
       })
     }
 
-  public atualizaHost(userType:any){
-    const userTypePath = '/' + userType 
+    public postMateria(obj: any, disciplinaType:any){
+      this.atualizarHost(disciplinaType)
+      return new Promise((ret) => {
+  
+        this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
+          ret(dados)
+        });
+        })
+      }
 
-  if (!this.host.includes(userTypePath)) {
-    const slashIndex = this.host.lastIndexOf('/');
-    const pathWithoutSlash = this.host.slice(0, slashIndex);
-    this.host = pathWithoutSlash + userTypePath;
+    public atualizarHost(disciplinaType:any){
+      const userTypePath = '/' + disciplinaType 
 
-  }
-  }
+      if (!this.host.includes(userTypePath)) {
+        const slashIndex = this.host.lastIndexOf('/');
+        const pathWithoutSlash = this.host.slice(0, slashIndex);
+        this.host = pathWithoutSlash + userTypePath;
+      }
+    }
+
+    public atualizaHost(userType:any){
+      const userTypePath = '/' + userType 
+
+      if (!this.host.includes(userTypePath)) {
+        const slashIndex = this.host.lastIndexOf('/');
+        const pathWithoutSlash = this.host.slice(0, slashIndex);
+        this.host = pathWithoutSlash + userTypePath;
+      }
+    }
+
 }

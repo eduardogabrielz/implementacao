@@ -11,9 +11,22 @@ export class DadosService {
  
   constructor(private http: HttpClient) { }
 
+  // Usuario, professor e Aluno
   public getAllDados(userType:any){
     return new Promise((ret) => {
       this.atualizaHost(userType)
+      this.http.get(this.host).subscribe(dados => {
+
+        ret(dados);
+
+      });
+    })
+  }
+
+  // Materias
+  public getAll(disciplinaType:any){
+    return new Promise((ret) => {
+      this.atualizaHost(disciplinaType)
       this.http.get(this.host).subscribe(dados => {
 
         ret(dados);
@@ -32,4 +45,6 @@ export class DadosService {
 
   }
   }
+
+
 }

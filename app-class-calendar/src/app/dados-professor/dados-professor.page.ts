@@ -27,6 +27,11 @@ export class DadosProfessorPage implements OnInit {
     });
   }
 
+  public irnaDisciplina(professor:any) {
+    this.navCtrl.navigateForward('disciplina', {
+      queryParams: { professor: professor }
+    });
+  }
 
   ngOnInit() {
     this.getAllDados()

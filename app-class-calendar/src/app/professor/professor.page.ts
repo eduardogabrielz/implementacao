@@ -18,7 +18,6 @@ export class ProfessorPage implements OnInit {
   enderecoATT: any;
   senhaATT: any;
   status: any;
-  teste:any;
 
   constructor(private route: ActivatedRoute, private service: EditarFormService) {}
   
@@ -41,7 +40,7 @@ export class ProfessorPage implements OnInit {
       telefone: this.telefoneATT,
       endereco: this.enderecoATT,
       senha: this.senhaATT,
-      nome: this.nomeATT
+      nome: this.nomeATT,
     };
 
     this.service.putDados(newObj, this.userType).then(dados => {
@@ -49,6 +48,5 @@ export class ProfessorPage implements OnInit {
       console.log(dados);
     });
   }
+
 }
-
-

@@ -1,20 +1,11 @@
-<ion-header [translucent]="false">
-  <ion-toolbar class="navebar">
-    <ion-buttons slot="start">
-      <ion-back-button text="Voltar"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      CLASSCALENDAR
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+
   <ion-row>
-      <ion-col>
-        <h1 class="ion-text-center">Cadastro</h1>
-      </ion-col>
+    <ion-col>
+      <h1 class="ion-text-center">CADASTRO</h1>
+    </ion-col>
   </ion-row>
+
   <ion-row class="ion-justify-content-center">
     <ion-item>
       <ion-label>Selecione o tipo:</ion-label>
@@ -25,92 +16,179 @@
       </ion-select>
     </ion-item>
   </ion-row>
+  <ion-grid class="ion" *ngIf="userType == 'aluno'">
 
-  <ion-grid class="login" *ngIf="userType == 'aluno'">   
-    <ion-item>
-      <ion-input [(ngModel)]="nome" label="Nome:" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label >
+          <ion-textarea label="NOME" [(ngModel)]="nome" labelPlacement="floating" fill="outline" placeholder="Digite seu nome"
+            type="text" id="nome" name="nome"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-input [(ngModel)]="senha" label="Senha:" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="CPF" [(ngModel)]="cpf"  labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
+            maxlength="11" type="text" id="cpf" name="cpf"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-input [(ngModel)]="cpf" label="Cpf:" type="Text" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="TURMA" [(ngModel)]="turma"  labelPlacement="floating" fill="outline" placeholder="Digite sua Turma"
+            type="text" id="turma" name="turma"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-input [(ngModel)]="turma" label="Turma:" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="TELEFONE" [(ngModel)]="telefone" labelPlacement="floating" fill="outline" placeholder="Digite seu telefone"
+            maxlength="11" type="number" id="telefone" name="telefone"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-input [(ngModel)]="endereco" label="Endereço:" labelPlacement="floating"></ion-input>
-    </ion-item> 
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="ENDEREÇO" [(ngModel)]="endereco" labelPlacement="floating" fill="outline" placeholder="Digite seu endereço"
+            type="text" id="endereco" name="endereco"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-input [(ngModel)]="telefone" label="Telefone:" type="tel" placeholder="(00)-_____-____" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-input label="SENHA" type="text"  [(ngModel)]="senha" label-placement="floating" fill="outline"
+            placeholder="Digite sua senha" id="password" name="password"></ion-input>
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col class="ion-text-center button">
-        <ion-button class="button" (click)="salvaAluno()" size="default" expand="full" type="submit"> Cadastrar </ion-button>
+        <ion-button class="button" size="default" (click)="salvaAluno()" expand="full" type="submit"> Cadastrar </ion-button>
       </ion-col>
-    
     </ion-row>
+
   </ion-grid>
 
-  <ion-grid class="login" *ngIf="userType == 'tecnico'">
-    <ion-item>
-      <ion-input [(ngModel)]="nome" label="Nome:" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="senha" label="Senha:" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="cpf" label="Cpf:" type="Text" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="endereco" label="Endereço:" labelPlacement="floating"></ion-input>
-    </ion-item> 
-  
-    <ion-item>
-      <ion-input [(ngModel)]="telefone" label="Telefone:" type="tel" placeholder="(00)-_____-____" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
+  <ion-grid class="ion" *ngIf="userType == 'tecnico'">
+
     <ion-row>
-      <ion-col class="ion-text-center button">
-        <ion-button class="button" (click)="salvaTecnico()" size="default" expand="full" type="submit"> Cadastrar </ion-button>
+      <ion-col>
+        <ion-label >
+          <ion-textarea label="NOME" [(ngModel)]="nome"  labelPlacement="floating" fill="outline" placeholder="Digite seu nome"
+            type="text" id="nome" name="nome"></ion-textarea>
+        </ion-label>
       </ion-col>
     </ion-row>
-  </ion-grid>    
-  
-  <ion-grid class="login" *ngIf="userType == 'professor'">
-    <ion-item>
-      <ion-input [(ngModel)]="nome" label="Nome:" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="senha" label="Senha:" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="cpf" label="Cpf:" type="Text" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-input [(ngModel)]="endereco" label="Endereço:" labelPlacement="floating"></ion-input>
-    </ion-item> 
-  
-    <ion-item>
-      <ion-input [(ngModel)]="telefone" label="Telefone:" type="tel" placeholder="(00)-_____-____" maxlength="11" labelPlacement="floating"></ion-input>
-    </ion-item>
-    
+
     <ion-row>
-      <ion-col class="ion-text-center button">
-        <ion-button class="button" (click)="salvaProfessor()" size="default" expand="full" type="submit"> Cadastrar </ion-button>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="CPF" [(ngModel)]="cpf"  labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
+            maxlength="11" type="text" id="cpf" name="cpf"></ion-textarea>
+        </ion-label>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="TELEFONE" [(ngModel)]="telefone"  labelPlacement="floating" fill="outline" placeholder="Digite seu telefone"
+            maxlength="11" type="number" id="telefone" name="telefone"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="ENDEREÇO"  [(ngModel)]="endereco"  labelPlacement="floating" fill="outline" placeholder="Digite seu endereço"
+            type="text" id="endereco" name="endereco"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-input label="SENHA" type="text" [(ngModel)]="senha"  label-placement="floating" fill="outline"
+            placeholder="Digite sua senha" id="password" name="password"></ion-input>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center button">
+        <ion-button class="button" size="default" (click)="salvaTecnico()" expand="full" type="submit"> Cadastrar </ion-button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
+
+  <ion-grid class="ion" *ngIf="userType == 'professor'">
+
+    <ion-row>
+      <ion-col>
+        <ion-label >
+          <ion-textarea label="NOME" [(ngModel)]="nome"  labelPlacement="floating" fill="outline" placeholder="Digite seu nome"
+            type="text" id="nome" name="nome"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="CPF" [(ngModel)]="cpf"  labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
+            maxlength="11" type="text" id="cpf" name="cpf"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="TELEFONE" [(ngModel)]="telefone"  labelPlacement="floating" fill="outline" placeholder="Digite seu telefone"
+            maxlength="11" type="number" id="telefone" name="telefone"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-textarea label="ENDEREÇO" [(ngModel)]="endereco"  labelPlacement="floating" fill="outline" placeholder="Digite seu endereço"
+            type="text" id="endereco" name="endereco"></ion-textarea>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          <ion-input label="SENHA" type="text" [(ngModel)]="senha"  label-placement="floating" fill="outline"
+            placeholder="Digite sua senha" id="password" name="password"></ion-input>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center button">
+        <ion-button class="button" size="default" expand="full" (click)="salvaProfessor()" type="submit"> Cadastrar </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  
+</ion-content>

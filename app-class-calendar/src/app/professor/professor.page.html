@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header translucent="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text="Voltar"></ion-back-button>
@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content fullscreen="true">
   <ion-item>
     <ion-label>ID do Professor: {{ professor.idProfessor }}</ion-label>
     <ion-input disabled></ion-input>
@@ -20,12 +20,12 @@
 
   <ion-item>
     <ion-label>CPF:</ion-label>
-    <ion-input [(ngModel)]="cpfATT" type="Text" maxlength="11" ></ion-input>
+    <ion-input [(ngModel)]="cpfATT" type="text" maxlength="11"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Telefone:</ion-label>
-    <ion-input [(ngModel)]="telefoneATT" type="tel" placeholder="(00)-_____-____" maxlength="11" ></ion-input>
+    <ion-input [(ngModel)]="telefoneATT" type="tel" placeholder="(00)-_____-____" maxlength="11"></ion-input>
   </ion-item>
 
   <ion-item>

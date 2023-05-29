@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Disciplina</ion-title>
+    <ion-button slot="end" color="success" shape="round" (click)="getAll()">Atualizar</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">disciplina</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+
+    <ion-item>
+      <ion-label>ID do Professor: {{ professor.idProfessor }}</ion-label>
+      <ion-input disabled></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Nome: {{professor.nome}}</ion-label>
+      <ion-input disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Materias:</ion-label>
+      <ion-input [(ngModel)]="materia"></ion-input>
+      <ion-button (click)="adicionarMateria()">Adicionar</ion-button>
+    </ion-item>
+  
+    <!-- Lista de matérias adicionadas -->
+    <ion-item *ngFor="let disciplina of materias; let ix = index">
+      <ion-label>{{ disciplina.materia }}</ion-label>
+      <ion-label>{{ disciplina.idDisciplina }}</ion-label>
+      <!-- <ion-label>{{ materia.professor.idProfessor }}</ion-label> -->
+      <!-- <ion-button color="warning" size="small" (click)="verDetalhes(materia)">Detalhes</ion-button> -->
+      <ion-button color="danger" size="small" (click)="excluirMateria(disciplina)">Excluir</ion-button>
+    </ion-item>
+    
+  </ion-grid>
+</ion-content>

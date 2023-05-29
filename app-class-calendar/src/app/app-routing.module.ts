@@ -49,6 +49,10 @@ const routes: Routes = [
   },  {
     path: 'tecnico',
     loadChildren: () => import('./tecnico/tecnico.module').then( m => m.TecnicoPageModule)
+  },
+  {
+    path: 'disciplina',
+    loadChildren: () => import('./disciplina/disciplina.module').then( m => m.DisciplinaPageModule)
   }
 
 ];
