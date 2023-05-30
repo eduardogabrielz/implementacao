@@ -13,8 +13,10 @@ export class HomePage {
     this.navCtrl.navigateForward('cadastros')
   }
 
-  goProfessores(){
-    this.navCtrl.navigateForward('dados-professor')
+  goProfessores() {
+    this.navCtrl.navigateForward('dados-professor', {
+      queryParams: { button: 'professores' }
+    })
   }
   
   goAlunos(){
@@ -23,6 +25,12 @@ export class HomePage {
 
   goTecnicos(){
     this.navCtrl.navigateForward('dados-tecnico')
+  }
+
+  goMaterias() {
+    this.navCtrl.navigateForward('dados-professor', {
+      queryParams: { button: 'materias' }
+    })
   }
 
 }

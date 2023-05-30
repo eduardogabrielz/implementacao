@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { DadosService } from '../api/dados.service';
+import { DeletarService } from '../api/deletar.service';
 
 @Component({
   selector: 'app-dados-tecnico',
@@ -10,13 +11,13 @@ import { DadosService } from '../api/dados.service';
 export class DadosTecnicoPage implements OnInit {
 
   itens : any
-  userType: any = 'tecnicos';
+  userType: any = 'tecnico';
 
-  constructor(private service: DadosService, private navCtrl: NavController) { }
+  constructor(private service: DadosService, private navCtrl: NavController, private exclusaoTecnico: DeletarService) { }
 
   /* recupera todos os objetos do banco */
   public getAllDados(){
-    this.service.getAllDados(this.userType).then(dados => {
+    this.service.getAllDados(this.userType+'s').then(dados => {
       this.itens = dados;
       console.log(this.itens)
     })
@@ -26,6 +27,14 @@ export class DadosTecnicoPage implements OnInit {
     this.navCtrl.navigateForward('tecnico', {
       queryParams: { tecnico: tecnico }
     });
+  }
+
+  public excluirTecnico(tecnico:any){
+    this.exclusaoTecnico.deleteUsuarios(this.userType, tecnico.idTecnico).then((tecnico) => {
+      console.log('Delete')
+      console.log('Tecnico excluida: '+ tecnico)
+      this.getAllDados();
+    })
   }
 
 

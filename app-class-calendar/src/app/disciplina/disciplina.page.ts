@@ -37,9 +37,18 @@ export class DisciplinaPage implements OnInit {
     this.service.postMateria(newObj, this.disciplinaType).then((newObj) => {
       console.log(newObj)
       this.materia = ''
+      this.getAll();
     })
   }
 
+  public excluirMateria(materia: any) {
+    this.exclusaoMateria.deleteDados(this.disciplinaType, materia.idDisciplina).then((materia) => {
+      console.log('Delete')
+      console.log('Materia excluida: '+ materia)
+      this.getAll();
+    })
+  }
+ 
   public getAll(){
     this.serviceMaterias.getAll(this.disciplinaType+'s').then(dados => {
       this.materias = dados;
@@ -47,10 +56,4 @@ export class DisciplinaPage implements OnInit {
     })
   }
 
-  public excluirMateria(materia:any){
-    this.exclusaoMateria.deleteDados(this.disciplinaType, materia.idDisciplina).then(dados => {
-      console.log('DELETE');
-      console.log(dados);
-    })
-  }
 }

@@ -15,7 +15,7 @@
 
     <ion-item>
       <ion-label>ID do Professor: {{ professor.idProfessor }}</ion-label>
-      <ion-input disabled></ion-input>
+      <ion-input  disabled></ion-input>
     </ion-item>
   
     <ion-item>
@@ -24,19 +24,20 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Materias:</ion-label>
+      <ion-label aria-label="text" >Materias:</ion-label>
       <ion-input [(ngModel)]="materia"></ion-input>
       <ion-button (click)="adicionarMateria()">Adicionar</ion-button>
     </ion-item>
   
     <!-- Lista de matérias adicionadas -->
-    <ion-item *ngFor="let disciplina of materias; let ix = index">
-      <ion-label>{{ disciplina.materia }}</ion-label>
-      <ion-label>{{ disciplina.idDisciplina }}</ion-label>
-      <!-- <ion-label>{{ materia.professor.idProfessor }}</ion-label> -->
-      <!-- <ion-button color="warning" size="small" (click)="verDetalhes(materia)">Detalhes</ion-button> -->
-      <ion-button color="danger" size="small" (click)="excluirMateria(disciplina)">Excluir</ion-button>
-    </ion-item>
-    
+    <ng-container *ngFor="let materia of materias; let ix = index">
+      <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor">
+        <ion-label>{{ materia.materia }}</ion-label>
+        <ion-button color="danger" size="small" (click)="excluirMateria(materia)">Excluir</ion-button>
+      </ion-item>
+    </ng-container>
+
+
+
   </ion-grid>
 </ion-content>
