@@ -18,7 +18,7 @@
   <ion-grid *ngIf="button == 'professores'">
     <ion-row>
       <ion-col class="ion-text-center" *ngFor="let professor of itens; let ix = index">
-        <ion-item>
+        <ion-item >
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 24px;"></ion-icon>
           </ion-avatar>
@@ -37,7 +37,7 @@
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 24px;"></ion-icon>
           </ion-avatar>
-          <p>{{professor.nome}}</p>        
+          <p>{{professor.nome}}</p>  
           <ion-button color="success" size="small" (click)="irnaDisciplina(professor)">Materias</ion-button>
         </ion-item>
       </ion-col>

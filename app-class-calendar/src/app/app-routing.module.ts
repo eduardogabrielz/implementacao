@@ -53,6 +53,10 @@ const routes: Routes = [
   {
     path: 'disciplina',
     loadChildren: () => import('./disciplina/disciplina.module').then( m => m.DisciplinaPageModule)
+  },
+  {
+    path: 'horario',
+    loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
   }
 
 ];

@@ -42,31 +42,6 @@
   }
   
   
-  .retangulo {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .retangulo ion-col {
-    height: 60px;
-    border-radius: 20px;
-    margin: 12px;
-    background-color: rgb(192, 192, 192);
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-    /* adiciona uma transição suave */
-    color: black;
-    font-size: 1.1em;
-    font-weight: 500;
-    padding-left: 15px;
-  
-    &:hover {
-      transform: scale(1.1);
-      /* aumenta o tamanho ao passar o mouse */
-    }
-  }
-  
   ion-content.conteudo {
     --background: #fdfdfdf5;
   }

@@ -11,6 +11,7 @@ export class CadastroFormService {
   
   constructor(private http: HttpClient) {}
 
+  // usuario
   public postDados(obj: any, userType:any){
     this.atualizaHost(userType)
     return new Promise((ret) => {
@@ -21,6 +22,18 @@ export class CadastroFormService {
       })
     }
 
+    public atualizaHost(userType:any){
+      const userTypePath = '/' + userType 
+
+      if (!this.host.includes(userTypePath)) {
+        const slashIndex = this.host.lastIndexOf('/');
+        const pathWithoutSlash = this.host.slice(0, slashIndex);
+        this.host = pathWithoutSlash + userTypePath;
+      }
+    }
+
+
+    // materia
     public postMateria(obj: any, disciplinaType:any){
       this.atualizarHost(disciplinaType)
       return new Promise((ret) => {
@@ -41,14 +54,25 @@ export class CadastroFormService {
       }
     }
 
-    public atualizaHost(userType:any){
-      const userTypePath = '/' + userType 
-
-      if (!this.host.includes(userTypePath)) {
-        const slashIndex = this.host.lastIndexOf('/');
-        const pathWithoutSlash = this.host.slice(0, slashIndex);
-        this.host = pathWithoutSlash + userTypePath;
+    // horario
+    public postHorario(obj: any, horarioType:any){
+      this.attHost(horarioType)
+      return new Promise((ret) => {
+  
+        this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
+          ret(dados)
+        });
+        })
       }
-    }
+
+      public attHost(horarioType:any){
+        const userTypePath = '/' + horarioType 
+  
+        if (!this.host.includes(userTypePath)) {
+          const slashIndex = this.host.lastIndexOf('/');
+          const pathWithoutSlash = this.host.slice(0, slashIndex);
+          this.host = pathWithoutSlash + userTypePath;
+        }
+      }
 
 }

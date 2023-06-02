@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Lista de Disciplinas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>Lista de Disciplinas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row *ngFor="let professor of itens; let ix = index">
+      <ng-container *ngFor="let materia of materias; let ix = index">
+        <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor">
+          <ion-avatar slot="start">
+            <ion-icon name="person-circle-outline" style="font-size: 34px;"></ion-icon>
+          </ion-avatar>
+          <ion-col>Professor: {{ professor.nome }}</ion-col>
+          <ion-col>Disciplina: {{ materia.materia }}</ion-col>
+          <ion-button color="success" size="small" (click)="irHorarioAgendamento(materia)">Adicionar Horario</ion-button>
+        </ion-item>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
