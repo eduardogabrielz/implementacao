@@ -35,6 +35,7 @@ export class DadosService {
     })
   }
 
+  // Horarios
   public getAllHorario(horarioType:any){
     return new Promise((ret) => {
       this.atualizaHost(horarioType)
@@ -47,15 +48,12 @@ export class DadosService {
   }
 
   public atualizaHost(userType:any){
-    const userTypePath = '/' + userType 
+    const caminhoTipoUsuario = '/' + userType;
 
-  if (!this.host.includes(userTypePath)) {
-    const slashIndex = this.host.lastIndexOf('/');
-    const pathWithoutSlash = this.host.slice(0, slashIndex);
-    this.host = pathWithoutSlash + userTypePath;
-
+    if (!this.host.includes(caminhoTipoUsuario)) {
+      const indiceBarra = this.host.lastIndexOf('/');
+      const caminhoSemBarra = this.host.slice(0, indiceBarra);
+      this.host = caminhoSemBarra + caminhoTipoUsuario;
+    }
   }
-  }
-
-
 }

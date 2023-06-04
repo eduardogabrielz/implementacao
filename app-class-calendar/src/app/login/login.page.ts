@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
+import { DadosService } from '../api/dados.service';
 
 @Component({
   selector: 'app-login',
@@ -12,34 +13,63 @@ import { IonicModule, NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private navCtrl: NavController) { }
-
   userType : any;
+  cpf : any;
+  senha : any;
+  users : any;
+  
+  constructor(private service: DadosService, private alertController: AlertController, private navCtrl: NavController) { }
 
-  goTeste(userType:any){
-    switch (userType) {
-      case 'aluno':
-        this.navCtrl.navigateForward('home')
-        break;
-      case 'professor':
-        this.navCtrl.navigateForward('professor')
-        break;
-      case 'tecnico':
-        this.navCtrl.navigateForward('menu')
-        break;
-      default:
-        console.log('Selecione seu tipo de usuario');
-        break;
+  public async getAllDados(): Promise<void> {
+    try {
+      let userTypeString: string;
+      if (this.userType === 'aluno' || this.userType === 'tecnico') {
+        userTypeString = this.userType + 's';
+      } else if (this.userType === 'professor') {
+        userTypeString = this.userType + 'es';
+      } else {
+        console.log('Tipo de usuário inválido.');
+        return;
+      }
+  
+      const dados = await this.service.getAllDados(userTypeString);
+      this.users = dados;
+      console.log(this.users);
+    } catch (error) {
+      console.log('Erro ao obter os dados:', error);
     }
   }
   
-  goHome(){
-    this.navCtrl.navigateForward('home')
+  public async login(): Promise<void> {
+    if (!this.userType) {
+      await this.exibirAlerta ('Por favor, selecione o tipo do usuario antes de fazer login');
+      return;
+    }
+    await this.getAllDados();
+  
+    const user = this.users.find((u: any) => u.cpf === this.cpf && u.senha === this.senha);  
+    if (user) {
+      await this.exibirAlerta ('Login bem-sucedido');
+    } else if (this.users.some((u: any) => u.cpf === this.cpf)) {
+      await this.exibirAlerta ('Senha errada');
+    } else if (this.users.some((u: any) => u.senha === this.senha)) {
+      await this.exibirAlerta ('CPF errado');
+    } else {
+      await this.exibirAlerta ('CPF e senha errados');
+    }
   }
 
-
+  async exibirAlerta (mensagem: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+  
   ngOnInit() {
   }
 
 }
-

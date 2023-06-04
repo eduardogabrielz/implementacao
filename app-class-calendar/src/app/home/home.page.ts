@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IonicModule, NavController } from '@ionic/angular';
 
 @Component({
@@ -6,8 +7,17 @@ import { IonicModule, NavController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
+
+
 export class HomePage {
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
+  
+  public userInformation:any
+
+  goTexto(){
+    console.log(this.userInformation.nome)
+  }
 
   goCadastro(){
     this.navCtrl.navigateForward('cadastros')
@@ -37,4 +47,12 @@ export class HomePage {
     this.navCtrl.navigateForward('horario')
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params && params['state']) {
+        this.userInformation = params['state'].userInformation;
+        console.log(this.userInformation);
+      }
+    });
+  }
 }

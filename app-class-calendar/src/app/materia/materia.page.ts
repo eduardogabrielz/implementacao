@@ -66,6 +66,14 @@ export class MateriaPage implements OnInit {
     });
   }
 
+  formatarHorario(horarioNumerico: number): string {
+    const horarioString = horarioNumerico.toString();
+    const hora = horarioString.substring(0, horarioString.length - 2);
+    const minutos = horarioString.substring(horarioString.length - 2);
+    return hora + ':' + minutos;
+  }
+  
+
   goHome(){
     this.navCtrl.navigateBack('home')
   }

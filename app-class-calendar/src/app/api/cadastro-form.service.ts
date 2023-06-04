@@ -22,20 +22,9 @@ export class CadastroFormService {
       })
     }
 
-    public atualizaHost(userType:any){
-      const userTypePath = '/' + userType 
-
-      if (!this.host.includes(userTypePath)) {
-        const slashIndex = this.host.lastIndexOf('/');
-        const pathWithoutSlash = this.host.slice(0, slashIndex);
-        this.host = pathWithoutSlash + userTypePath;
-      }
-    }
-
-
     // materia
     public postMateria(obj: any, disciplinaType:any){
-      this.atualizarHost(disciplinaType)
+      this.atualizaHost(disciplinaType)
       return new Promise((ret) => {
   
         this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
@@ -43,20 +32,10 @@ export class CadastroFormService {
         });
         })
       }
-
-    public atualizarHost(disciplinaType:any){
-      const userTypePath = '/' + disciplinaType 
-
-      if (!this.host.includes(userTypePath)) {
-        const slashIndex = this.host.lastIndexOf('/');
-        const pathWithoutSlash = this.host.slice(0, slashIndex);
-        this.host = pathWithoutSlash + userTypePath;
-      }
-    }
 
     // horario
     public postHorario(obj: any, horarioType:any){
-      this.attHost(horarioType)
+      this.atualizaHost(horarioType)
       return new Promise((ret) => {
   
         this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
@@ -65,14 +44,13 @@ export class CadastroFormService {
         })
       }
 
-      public attHost(horarioType:any){
-        const userTypePath = '/' + horarioType 
+    public atualizaHost(userType:any){
+      const caminho = '/' + userType 
   
-        if (!this.host.includes(userTypePath)) {
-          const slashIndex = this.host.lastIndexOf('/');
-          const pathWithoutSlash = this.host.slice(0, slashIndex);
-          this.host = pathWithoutSlash + userTypePath;
-        }
-      }
-
+      if (!this.host.includes(caminho)) {
+        const indiceBarra = this.host.lastIndexOf('/');
+        const caminhoSemBarra = this.host.slice(0, indiceBarra);
+        this.host = caminhoSemBarra + caminho;
+      }      
+    }
 }

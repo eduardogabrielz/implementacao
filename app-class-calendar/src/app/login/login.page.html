@@ -20,7 +20,7 @@
       </ion-col>
       <ion-col>
         <ion-label>
-          <ion-textarea label="CPF" labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
+          <ion-textarea [(ngModel)]="cpf" label="CPF" labelPlacement="floating" fill="outline" placeholder="Digite seu cpf"
             maxlength="11" type="text" id="cpf" name="cpf"></ion-textarea>
         </ion-label>
       </ion-col>
@@ -32,7 +32,7 @@
       </ion-col>
       <ion-col>
         <ion-label>
-          <ion-input label="SENHA" type="password" label-placement="floating" fill="outline"
+          <ion-input [(ngModel)]="senha" label="SENHA" type="password" label-placement="floating" fill="outline"
             placeholder="Digite sua senha" id="password" name="password"></ion-input>
         </ion-label>
       </ion-col>
@@ -57,7 +57,7 @@
 
     <ion-row>
       <ion-col class="ion-text-center button">
-        <ion-button class="button" (click)="goTeste(userType)" (click)="goHome()"  size="default" expand="full" type="submit"> Entrar </ion-button>
+        <ion-button (click)="login()" class="button" size="default" expand="full" type="submit">Entrar </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

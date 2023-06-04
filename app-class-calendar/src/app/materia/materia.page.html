@@ -71,23 +71,13 @@
       </ion-col>
     </ion-row>
 
-        <!-- Lista de horarios por materia -->
-    <!-- <ion-row *ngFor="let professor of itens; let ix = index">
-      <ng-container *ngFor="let materia of materias; let ix = index">
-        <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor">
-          <ion-col *ngFor="let horario of conjunto; let ix = index">
-            <p>Dia: {{horario.dia}}</p>
-          </ion-col>     
-      </ng-container>
-    </ion-row> -->
-
     <ion-row *ngFor="let horario of conjunto; let ix = index">
       <ng-container *ngIf="horario.disciplina.idDisciplina === materia.idDisciplina">
         <ion-item>
           <ion-col size="3">Dia: {{horario.dia}}</ion-col>
           <ion-col size="3">Mes: {{horario.mes}}</ion-col>
-          <ion-col size="3">Dia Inicio: {{horario.horarioInicio | date:'HH:mm'}}</ion-col>
-          <ion-col size="3">Dia Final {{horario.horarioFim | date:'HH:mm'}}</ion-col>
+          <ion-col size="3">Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-col>
+          <ion-col size="3">Horário Final: {{formatarHorario(horario.horarioFim)}}</ion-col>
         </ion-item>  
       </ng-container>
     </ion-row>
