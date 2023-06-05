@@ -3,6 +3,7 @@
     <ion-title class="titulo">
       Materias
     </ion-title>
+    <ion-button slot="end" color="success" shape="round" (click)="getAll()">Atualizar</ion-button>
     <ion-buttons slot="start">
       <ion-menu-button class="icone-menu"></ion-menu-button>
     </ion-buttons>
@@ -71,16 +72,22 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let horario of conjunto; let ix = index">
-      <ng-container *ngIf="horario.disciplina.idDisciplina === materia.idDisciplina">
-        <ion-item>
-          <ion-col size="3">Dia: {{horario.dia}}</ion-col>
-          <ion-col size="3">Mes: {{horario.mes}}</ion-col>
-          <ion-col size="3">Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-col>
-          <ion-col size="3">Horário Final: {{formatarHorario(horario.horarioFim)}}</ion-col>
-        </ion-item>  
+    <ion-row>
+      <ng-container *ngFor="let horario of conjunto; let ix = index">
+        <ng-container *ngIf="horario.disciplina.idDisciplina === materia.idDisciplina">
+          <ion-col size="6">
+            <ion-item>
+              <ion-label>Dia: {{horario.dia}}</ion-label>
+              <ion-label>Mês: {{horario.mes}}</ion-label>
+              <ion-label>Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-label>
+              <ion-label>Horário Final: {{formatarHorario(horario.horarioFim)}}</ion-label>
+              <ion-button color="danger" size="small" (click)="excluirHorario(horario)">Excluir</ion-button>
+            </ion-item>
+          </ion-col>
+        </ng-container>
       </ng-container>
     </ion-row>
+    
 
   </ion-grid>
 

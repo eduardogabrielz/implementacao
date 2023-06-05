@@ -31,7 +31,7 @@ export class DadosAlunoPage implements OnInit {
   public excluirAluno(aluno:any){
     this.exclusaoAluno.deleteUsuarios(this.userType, aluno.idAluno).then((aluno) => {
       console.log('Delete')
-      console.log('Materia excluida: '+ aluno)
+      console.log('Aluno excluida: '+ aluno)
       this.getAllDados();
     })
   }

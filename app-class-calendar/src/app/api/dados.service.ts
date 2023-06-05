@@ -47,6 +47,18 @@ export class DadosService {
     })
   }
 
+  // Monitoria
+  public getAllMonitoria(monitoriaType:any){
+    return new Promise((ret) => {
+      this.atualizaHost(monitoriaType)
+      this.http.get(this.host).subscribe(dados => {
+
+        ret(dados);
+
+      });
+    })
+  }
+
   public atualizaHost(userType:any){
     const caminhoTipoUsuario = '/' + userType;
 

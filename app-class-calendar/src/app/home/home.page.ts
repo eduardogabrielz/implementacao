@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {IonicModule, NavController} from '@ionic/angular';
+import { DadosService } from '../api/dados.service';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +12,19 @@ import {IonicModule, NavController} from '@ionic/angular';
 export class HomePage {
   
   public usuario:any
-  constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
+  public userType:any
+  monitoriaType:any='monitorias'
+  itens:any
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService) {}
   
-  goTexto(){
-      console.log(this.usuario.senha)
-      console.log(this.usuario.nome)
-      console.log(this.usuario.telefone)
-      console.log(this.usuario.endereco)
-      console.log(this.usuario.turma)
-  }
   goCadastro(){
     this.navCtrl.navigateForward('cadastros')
+  }
+
+  goHome(){
+    this.route.queryParams.subscribe(params => {
+      this.usuario = params['usuario'];
+      this.userType = params['userType']});
   }
 
   goProfessores() {
@@ -48,9 +51,39 @@ export class HomePage {
     this.navCtrl.navigateForward('horario')
   }
 
+  goAgendamento(){
+    this.navCtrl.navigateForward('agendamento', {
+      queryParams: { usuario: this.usuario,
+                      userType: this.userType }
+    });
+  }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  formatarHorario(horarioNumerico: number): string {
+    const horarioString = horarioNumerico.toString();
+    const hora = horarioString.substring(0, horarioString.length - 2);
+    const minutos = horarioString.substring(horarioString.length - 2);
+    return hora + ':' + minutos;
+  }
+  
+  public getAllDados(){
+    this.service.getAllMonitoria(this.monitoriaType).then(dados => {
+      this.itens = dados;
+      console.log(this.itens)
+    })
+  }
+
   ngOnInit() {
+    this.getAllDados()
     this.route.queryParams.subscribe(params => {
-      this.usuario = params['usuario']});
+      this.usuario = params['usuario'];
+      this.userType = params['userType']});
   }
   }
 

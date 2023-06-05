@@ -44,6 +44,17 @@ export class CadastroFormService {
         })
       }
 
+    // agendamento
+    public postAgendamento(obj: any, monitoriaType:any){
+      this.atualizaHost(monitoriaType)
+      return new Promise((ret) => {
+    
+        this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
+          ret(dados)
+        });
+        })
+      }
+
     public atualizaHost(userType:any){
       const caminho = '/' + userType 
   

@@ -5,6 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { CadastroFormService } from '../api/cadastro-form.service';
 import { ActivatedRoute } from '@angular/router';
 import { DadosService } from '../api/dados.service';
+import { DeletarService } from '../api/deletar.service';
 
 @Component({
   selector: 'app-materia',
@@ -28,7 +29,7 @@ export class MateriaPage implements OnInit {
   materias:any
   horarioType:any = 'horario'
 
-  constructor(private route: ActivatedRoute, private navCtrl: NavController, private service: CadastroFormService, private allHorarios: DadosService) { }
+  constructor(private exclusaoHorario: DeletarService, private route: ActivatedRoute, private navCtrl: NavController, private service: CadastroFormService, private allHorarios: DadosService) { }
 
   public salvaHorario(){
     let newObj:any = {    
@@ -41,7 +42,7 @@ export class MateriaPage implements OnInit {
         idDisciplina: this.materia.idDisciplina
       }
     };
-
+    
     this.service.postHorario(newObj, this.horarioType).then((newObj) => {
       console.log(newObj)
       this.mes = ''
@@ -73,6 +74,13 @@ export class MateriaPage implements OnInit {
     return hora + ':' + minutos;
   }
   
+  public excluirHorario(horario: any) {
+    this.exclusaoHorario.deleteDados(this.horarioType, horario.idHorario).then((horario) => {
+      console.log('Delete')
+      console.log('Horario excluida: '+ horario)
+      this.getAll();
+    })
+  }
 
   goHome(){
     this.navCtrl.navigateBack('home')

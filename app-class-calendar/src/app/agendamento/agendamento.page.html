@@ -1,23 +1,48 @@
-<ion-header [translucent]="true" class="header">
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="titulo">
-      AGENDAMENTO
-    </ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button class="icone-menu"></ion-menu-button>
+      <ion-back-button text="Voltar"></ion-back-button>
     </ion-buttons>
+    <ion-title>Agendamentos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="conteudo">
-  <ion-grid class="form-agendamento" >
-    <ion-list>
-      <ion-row >
-        <p>Agende sua monitoria: </p>
+<ion-content id="main-content">
+  <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <p>Agende sua monitoria: </p>      
+      </ion-row> 
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="6" *ngFor="let horario of itens; let ix = index">
+          <ion-item>
+            <ion-label size="small" class="ion-text-center">Dia: {{ horario.dia }}</ion-label>
+            <ion-label size="small" class="ion-text-center">Professor: {{ horario.disciplina.professor.nome }}</ion-label>
+            <ion-label size="small" class="ion-text-center">Materia: {{horario.disciplina.materia}}</ion-label>
+            <ion-label size="small" class="ion-text-center">Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-label>        
+            <ion-button (click)="salvaAgendamento(horario)" color="success">Agendar</ion-button>
+          </ion-item>
+        </ion-col>
       </ion-row>
-     </ion-list> 
   </ion-grid>
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <ion-footer [translucent]="true" class="navebar">
   <ion-toolbar>

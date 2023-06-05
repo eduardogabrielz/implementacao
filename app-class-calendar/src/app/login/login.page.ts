@@ -54,7 +54,8 @@ export class LoginPage implements OnInit {
       console.log('Informações do usuário:', userInfo);
       await this.exibirAlerta('Login bem-sucedido');
       this.navCtrl.navigateForward('home', {
-        queryParams: { usuario: userInfo }
+        queryParams: { usuario: userInfo,
+                      userType: this.userType}
       });
     } else if (this.users.some((u: any) => u.cpf === this.cpf)) {
       await this.exibirAlerta ('Senha errada');

@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'horario',
     loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   }
 
 ];
