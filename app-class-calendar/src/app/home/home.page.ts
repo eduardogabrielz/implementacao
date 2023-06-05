@@ -53,8 +53,7 @@ export class HomePage {
 
   goAgendamento(){
     this.navCtrl.navigateForward('agendamento', {
-      queryParams: { usuario: this.usuario,
-                      userType: this.userType }
+      queryParams: { usuario: this.usuario}
     });
   }
 
@@ -71,7 +70,7 @@ export class HomePage {
     const minutos = horarioString.substring(horarioString.length - 2);
     return hora + ':' + minutos;
   }
-  
+
   public getAllDados(){
     this.service.getAllMonitoria(this.monitoriaType).then(dados => {
       this.itens = dados;
