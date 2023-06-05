@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { DadosService } from '../api/dados.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -49,7 +50,12 @@ export class LoginPage implements OnInit {
   
     const user = this.users.find((u: any) => u.cpf === this.cpf && u.senha === this.senha);  
     if (user) {
-      await this.exibirAlerta ('Login bem-sucedido');
+      const { ...userInfo } = user;
+      console.log('Informações do usuário:', userInfo);
+      await this.exibirAlerta('Login bem-sucedido');
+      this.navCtrl.navigateForward('home', {
+        queryParams: { usuario: userInfo }
+      });
     } else if (this.users.some((u: any) => u.cpf === this.cpf)) {
       await this.exibirAlerta ('Senha errada');
     } else if (this.users.some((u: any) => u.senha === this.senha)) {

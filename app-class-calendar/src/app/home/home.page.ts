@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonicModule, NavController } from '@ionic/angular';
+import {IonicModule, NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +8,18 @@ import { IonicModule, NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 
-
-
 export class HomePage {
+  
+  public usuario:any
   constructor(private navCtrl: NavController, private route: ActivatedRoute) {}
   
-  public userInformation:any
-
   goTexto(){
-    console.log(this.userInformation.nome)
+      console.log(this.usuario.senha)
+      console.log(this.usuario.nome)
+      console.log(this.usuario.telefone)
+      console.log(this.usuario.endereco)
+      console.log(this.usuario.turma)
   }
-
   goCadastro(){
     this.navCtrl.navigateForward('cadastros')
   }
@@ -49,10 +50,7 @@ export class HomePage {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      if (params && params['state']) {
-        this.userInformation = params['state'].userInformation;
-        console.log(this.userInformation);
-      }
-    });
+      this.usuario = params['usuario']});
   }
-}
+  }
+

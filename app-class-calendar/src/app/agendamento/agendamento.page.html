@@ -15,40 +15,8 @@
       <ion-row >
         <p>Agende sua monitoria: </p>
       </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Data:
-        </ion-col>
-        <ion-col>
-          <ion-datetime-button datetime="datetime"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime id="datetime"></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-select label="Selecione as matérias disponíveis" label-placement="floating" fill="outline">
-          <ion-select-option value="apple">Apple</ion-select-option>
-          <ion-select-option value="banana">Banana</ion-select-option>
-          <ion-select-option value="orange">Orange</ion-select-option>
-        </ion-select>
-      </ion-row>
-      <ion-row>
-        <ion-select label="Selecione os professores disponíveis" label-placement="floating" fill="outline">
-          <ion-select-option value="apple">Apple</ion-select-option>
-          <ion-select-option value="banana">Banana</ion-select-option>
-          <ion-select-option value="orange">Orange</ion-select-option>
-        </ion-select>
-      </ion-row>
-      <ion-row>
-        <ion-textarea class="textarea" label="Dúvidas para monitoria:" labelPlacement="floating" fill="solid" placeholder="Descreva suas dúvidas ao professor."></ion-textarea>
-      </ion-row>
-    </ion-list>
-    
+     </ion-list> 
   </ion-grid>
-
 </ion-content>
 
 <ion-footer [translucent]="true" class="navebar">
