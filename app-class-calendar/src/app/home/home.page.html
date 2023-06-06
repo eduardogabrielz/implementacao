@@ -38,16 +38,16 @@
         <ng-container *ngFor="let monitoria of itens">
           <ion-row class="ion-justify-content-center" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor">
             <ion-row *ngIf="monitoria.estado === true">
-              <ion-col>
+              <ion-col size="2">
                 Dia: {{ monitoria.horario.dia }}
               </ion-col>
-              <ion-col>
+              <ion-col size="2">
                 Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio)}}
               </ion-col>
-              <ion-col>  
+              <ion-col size="2">  
                 Aluno: {{ monitoria.aluno.nome }}
               </ion-col>  
-              <ion-col>
+              <ion-col size="2">
                 Matéria: {{ monitoria.horario.disciplina.materia }}
               </ion-col>
               <ion-button color="success" (click)="atualizar(monitoria)" class="ion-justify-content-center">Finalizar</ion-button>      
