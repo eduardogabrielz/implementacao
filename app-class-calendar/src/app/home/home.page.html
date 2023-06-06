@@ -14,7 +14,7 @@
           <ion-row class="ion-justify-content-center" *ngIf="usuario.idAluno === monitoria.aluno.idAluno" class="ion-padding">
             <ion-row *ngIf="monitoria.estado === true">
               <ion-col>
-                Dia: {{ monitoria.horario.dia }}
+                Dia: {{monitoria.horario.dia}}
               </ion-col>
               <ion-col>
                 Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio)}}

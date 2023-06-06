@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {IonicModule, NavController} from '@ionic/angular';
+import {AlertController, IonicModule, NavController} from '@ionic/angular';
 import { DadosService } from '../api/dados.service';
 import { EditarFormService } from '../api/editar-form.service';
 
@@ -18,7 +18,7 @@ export class HomePage {
   itens:any
   idMonitoria: any;
   estado:any
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
+  constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
   
   goCadastro(){
     this.navCtrl.navigateForward('cadastros')
@@ -30,10 +30,20 @@ export class HomePage {
       estado: false
     };
 
-    this.modificar.putDados(newObj, this.monitoriaType).then(dados => {
-      console.log('UPDATE');
+    this.modificar.putDados(newObj, this.monitoriaType).then(async dados => {
+      await this.exibirAlerta('Finalização da Monitoria, por favor, atualize a pagina');
       console.log(dados);
     });
+  }
+
+  async exibirAlerta (mensagem: string){
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 
   goHome(){
