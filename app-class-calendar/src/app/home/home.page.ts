@@ -27,7 +27,13 @@ export class HomePage {
   public atualizar(monitoria:any) {
     let newObj: any = {
       idMonitoria: monitoria.idMonitoria,
-      estado: false
+      estado: false,
+      aluno:{
+        idAluno: monitoria.aluno.idAluno,
+      },
+      horario:{
+        idHorario: monitoria.horario.idHorario,
+      }
     };
 
     this.modificar.putDados(newObj, this.monitoriaType).then(async dados => {

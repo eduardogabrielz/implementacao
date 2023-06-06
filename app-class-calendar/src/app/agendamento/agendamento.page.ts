@@ -40,6 +40,7 @@ export class AgendamentoPage implements OnInit {
   agendamentoExistente(horario: any){
     return this.items.some((items: { horario: any; }) => items.horario.idHorario === horario.idHorario);
   }
+   
 
   formatarHorario(horarioNumerico: number){
     const horarioString = horarioNumerico.toString();
