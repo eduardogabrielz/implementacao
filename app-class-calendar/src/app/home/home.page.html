@@ -14,7 +14,7 @@
           Dia: {{ monitoria.horario.dia }}
         </ion-label>
         <ion-label>
-          horarioInicio: {{ formatarHorario(monitoria.horario.horarioInicio)}}
+          horario de Inicio: {{ formatarHorario(monitoria.horario.horarioInicio)}}
         </ion-label>
         <ion-label>  
           Professor: {{ monitoria.horario.disciplina.professor.nome }}
@@ -33,7 +33,7 @@
           Dia: {{ monitoria.horario.dia }}
         </ion-label>
         <ion-label>
-          horarioInicio: {{ formatarHorario(monitoria.horario.horarioInicio)}}
+          horario de Inicio: {{ formatarHorario(monitoria.horario.horarioInicio)}}
         </ion-label>
         <ion-label>  
           Aluno: {{ monitoria.aluno.nome }}
@@ -54,7 +54,21 @@
   </ion-grid>
 </ion-content>
 
-<ion-footer [translucent]="true" class="navebar">
+<ion-footer [translucent]="true" class="navebar" *ngIf="userType == 'aluno'">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6" class="icones">
+        <ion-icon (click)="goAgendamento()" name="calendar" size="large"></ion-icon>
+      </ion-col>
+
+      <ion-col size="6" class="icones">
+        <ion-icon (click)="goPerfil()" name="person" size="lar"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-footer [translucent]="true" class="navebar" *ngIf="userType == 'tecnico'">
   <ion-toolbar>
     <ion-row>
       <ion-col size="4" class="icones">
@@ -66,8 +80,8 @@
       </ion-col>
 
       <ion-col size="4" class="icones">
-        <ion-icon name="chatbubbles" size="large"></ion-icon>
+        <ion-icon (click)="goPerfil()" name="person" size="lar"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

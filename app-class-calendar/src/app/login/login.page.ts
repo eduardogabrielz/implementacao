@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   
   constructor(private service: DadosService, private alertController: AlertController, private navCtrl: NavController) { }
 
-  public async getAllDados(): Promise<void> {
+  public async getAllDados(){
     try {
       let userTypeString: string;
       if (this.userType === 'aluno' || this.userType === 'tecnico') {
@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     }
   }
   
-  public async login(): Promise<void> {
+  public async login(){
     if (!this.userType) {
       await this.exibirAlerta ('Por favor, selecione o tipo do usuario antes de fazer login');
       return;
@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async exibirAlerta (mensagem: string): Promise<void> {
+  async exibirAlerta (mensagem: string){
     const alert = await this.alertController.create({
       header: 'Alerta',
       message: mensagem,

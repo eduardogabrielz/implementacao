@@ -7,41 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content id="main-content">
   <ion-grid>
-      <ion-row class="ion-justify-content-center">
-        <p>Agende sua monitoria: </p>      
-      </ion-row> 
-      <ion-row>
-        <ion-col size="12" size-md="6" size-lg="6" *ngFor="let horario of itens; let ix = index">
-          <ion-item>
+    <ion-row class="ion-justify-content-center">
+      <p>Agende sua monitoria:</p>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ng-container *ngFor="let horario of itens; let ix = index">
+          <ion-item *ngIf="!agendamentoExistente(horario)">
             <ion-label size="small" class="ion-text-center">Dia: {{ horario.dia }}</ion-label>
             <ion-label size="small" class="ion-text-center">Professor: {{ horario.disciplina.professor.nome }}</ion-label>
-            <ion-label size="small" class="ion-text-center">Materia: {{horario.disciplina.materia}}</ion-label>
-            <ion-label size="small" class="ion-text-center">Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-label>        
+            <ion-label size="small" class="ion-text-center">Materia: {{ horario.disciplina.materia }}</ion-label>
+            <ion-label size="small" class="ion-text-center">Horário Início: {{ formatarHorario(horario.horarioInicio) }}</ion-label>
             <ion-button (click)="salvaAgendamento(horario)" color="success">Agendar</ion-button>
           </ion-item>
-        </ion-col>
-      </ion-row>
+        </ng-container>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+  
 </ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <ion-footer [translucent]="true" class="navebar">
