@@ -12,7 +12,7 @@ export class PerfilPage implements OnInit {
   public usuario:any
   public userType:any
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(private navCtrl: NavController, private route: ActivatedRoute) { }
 
 
 
@@ -26,12 +26,24 @@ export class PerfilPage implements OnInit {
     return `(${ddd}) ${primeiroBloco}-${segundoBloco}`;
   }
 
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goAgendamento(){
+    this.navCtrl.navigateForward('agendamento', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.usuario = params['usuario'];
       this.userType = params['userType']});
   }
-
-
 
 }

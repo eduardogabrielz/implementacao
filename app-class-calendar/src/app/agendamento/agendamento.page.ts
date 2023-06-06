@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DadosService } from '../api/dados.service';
 import { ActivatedRoute } from '@angular/router';
 import { CadastroFormService } from '../api/cadastro-form.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-agendamento',
@@ -21,7 +21,7 @@ export class AgendamentoPage implements OnInit {
   horarioType:any = 'horario'
   monitoriaType:any='monitoria'
   
-  constructor(private alertController: AlertController, private postAgendamento: CadastroFormService,private service: DadosService, private route: ActivatedRoute) { }
+  constructor(private navCtrl: NavController, private alertController: AlertController, private postAgendamento: CadastroFormService,private service: DadosService, private route: ActivatedRoute) { }
 
   public getAllDados(){
     this.service.getAllHorario(this.horarioType+'s').then(dados => {
@@ -76,6 +76,20 @@ export class AgendamentoPage implements OnInit {
     await alert.present();
   }
   
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
   ngOnInit() {
     this.getAllDados()
     this.getAll()

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {IonicModule, NavController} from '@ionic/angular';
 import { DadosService } from '../api/dados.service';
+import { EditarFormService } from '../api/editar-form.service';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,26 @@ export class HomePage {
   
   public usuario:any
   public userType:any
-  monitoriaType:any='monitorias'
+  monitoriaType:any='monitoria'
   itens:any
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService) {}
+  idMonitoria: any;
+  estado:any
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
   
   goCadastro(){
     this.navCtrl.navigateForward('cadastros')
+  }
+
+  public atualizar(monitoria:any) {
+    let newObj: any = {
+      idMonitoria: monitoria.idMonitoria,
+      estado: false
+    };
+
+    this.modificar.putDados(newObj, this.monitoriaType).then(dados => {
+      console.log('UPDATE');
+      console.log(dados);
+    });
   }
 
   goHome(){
@@ -27,19 +42,19 @@ export class HomePage {
       this.userType = params['userType']});
   }
 
-  goProfessores() {
-    this.navCtrl.navigateForward('dados-professor', {
-      queryParams: { button: 'professores' }
-    })
-  }
+  // goProfessores() {
+  //   this.navCtrl.navigateForward('dados-professor', {
+  //     queryParams: { button: 'professores' }
+  //   })
+  // }
   
-  goAlunos(){
-    this.navCtrl.navigateForward('dados-aluno')
-  }
+  // goAlunos(){
+  //   this.navCtrl.navigateForward('dados-aluno')
+  // }
 
-  goTecnicos(){
-    this.navCtrl.navigateForward('dados-tecnico')
-  }
+  // goTecnicos(){
+  //   this.navCtrl.navigateForward('dados-tecnico')
+  // }
 
   goMaterias() {
     this.navCtrl.navigateForward('dados-professor', {
@@ -47,13 +62,10 @@ export class HomePage {
     })
   }
 
-  goHorarios(){
-    this.navCtrl.navigateForward('horario')
-  }
-
   goAgendamento(){
     this.navCtrl.navigateForward('agendamento', {
-      queryParams: { usuario: this.usuario}
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
     });
   }
 
@@ -72,7 +84,7 @@ export class HomePage {
   }
 
   public getAllDados(){
-    this.service.getAllMonitoria(this.monitoriaType).then(dados => {
+    this.service.getAllMonitoria(this.monitoriaType+'s').then(dados => {
       this.itens = dados;
       console.log(this.itens)
     })
