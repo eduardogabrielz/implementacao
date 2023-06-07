@@ -1,5 +1,7 @@
+import { NavController } from '@ionic/angular';
 import { CadastroFormService } from './../api/cadastro-form.service';
 import { Component, OnInit, NgModule } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastros',
@@ -8,15 +10,17 @@ import { Component, OnInit, NgModule } from '@angular/core';
 })
 export class CadastrosPage implements OnInit {
 
+  public usuario: any
+  public userType:any
+  userGroup:any
   nome : any
   endereco : any
   senha: any
   telefone: any
   turma: any
   cpf: any
-  userType: any 
 
-  constructor(private service: CadastroFormService) {   
+  constructor(private navCtrl: NavController, private service: CadastroFormService, private route: ActivatedRoute) {   
   }
 
   public salvaAluno(){
@@ -30,7 +34,7 @@ export class CadastrosPage implements OnInit {
       turma : this.turma
     }
 
-    this.service.postDados(newObj, this.userType).then((newObj) => {
+    this.service.postDados(newObj, this.userGroup).then((newObj) => {
       console.log(newObj)
       this.cpf = ''
       this.endereco = ''
@@ -52,7 +56,7 @@ export class CadastrosPage implements OnInit {
       telefone : this.telefone,
     }
 
-    this.service.postDados(newObj, this.userType).then((newObj) => {
+    this.service.postDados(newObj, this.userGroup).then((newObj) => {
       console.log(newObj)
       this.cpf = ''
       this.endereco = ''
@@ -73,7 +77,7 @@ export class CadastrosPage implements OnInit {
       telefone : this.telefone,
     }
 
-    this.service.postDados(newObj, this.userType).then((newObj) => {
+    this.service.postDados(newObj, this.userGroup).then((newObj) => {
       console.log(newObj)
       this.cpf = ''
       this.endereco = ''
@@ -84,7 +88,24 @@ export class CadastrosPage implements OnInit {
 
   }
 
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                    userType: this.userType }
+    });
+  }
+
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.usuario = params['usuario'];
+      this.userType = params['userType']});
   }
 
 }

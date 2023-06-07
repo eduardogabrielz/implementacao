@@ -18,15 +18,16 @@ export class MateriaPage implements OnInit {
 
   public materia: any
   public professor:any
+  public usuario:any
+  public userType:any
   disponivel : any
   horarioFim: any
   horarioInicio: any
   dia:any
   mes:any
   idDisciplina:any
-  conjunto:any
-  itens:any
-  materias:any
+  itens:any = []
+  materias:any = []
   horarioType:any = 'horario'
 
   constructor(private exclusaoHorario: DeletarService, private route: ActivatedRoute, private navCtrl: NavController, private service: CadastroFormService, private allHorarios: DadosService) { }
@@ -55,16 +56,9 @@ export class MateriaPage implements OnInit {
 
   public getAll(){
     this.allHorarios.getAll(this.horarioType+'s').then(dados => {
-      this.conjunto = dados;
-      console.log(this.conjunto)
+      this.itens = dados;
+      console.log(this.itens)
     })
-  }
-
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.materia = params['materia'];
-      this.getAll();
-    });
   }
 
   formatarHorario(horarioNumerico: number): string {
@@ -82,8 +76,27 @@ export class MateriaPage implements OnInit {
     })
   }
 
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
   goHome(){
-    this.navCtrl.navigateBack('home')
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.materia = params['materia'];
+      this.usuario = params['usuario'];
+      this.userType = params['userType'];
+      this.getAll();
+    });
   }
 }
 

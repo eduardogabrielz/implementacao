@@ -12,8 +12,8 @@ export class CadastroFormService {
   constructor(private http: HttpClient) {}
 
   // usuario
-  public postDados(obj: any, userType:any){
-    this.atualizaHost(userType)
+  public postDados(obj: any, userGroup:any){
+    this.atualizaHost(userGroup)
     return new Promise((ret) => {
 
       this.http.post(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
@@ -55,8 +55,8 @@ export class CadastroFormService {
         })
       }
 
-    public atualizaHost(userType:any){
-      const caminho = '/' + userType 
+    public atualizaHost(userGroup:any){
+      const caminho = '/' + userGroup 
   
       if (!this.host.includes(caminho)) {
         const indiceBarra = this.host.lastIndexOf('/');

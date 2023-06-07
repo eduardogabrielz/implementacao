@@ -8,18 +8,26 @@
 </ion-header>
 
 
-<ion-content id="main-content">
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
+<ion-content id="main-content" >
+  
+  <ion-grid *ngIf="userType == 'aluno'">
+    <ng-container *ngIf="todosHorariosIndisponiveis(itens) || itens.length === 0">
+        <p>Você não tem nenhum horario disponivel no sistema.</p>
+    </ng-container>
+  </ion-grid>
+
+  <ion-grid *ngIf="itens.length > 0">
+    <ion-row class="ion-justify-content-center" *ngIf="!todosHorariosIndisponiveis(itens)">
       <p>Agende sua monitoria:</p>
     </ion-row>
-    <ion-row>
+
+    <ion-row *ngFor="let horario of itens">
       <ion-col size="12" size-md="6" size-lg="6">
-        <ng-container *ngFor="let horario of itens; let ix = index">
-          <ion-item *ngIf="!agendamentoExistente(horario)">
+        <ng-container *ngIf="horario.disponivel === true && !todosHorariosIndisponiveis(horario)">
+          <ion-item>
             <ion-label size="small" class="ion-text-center">Dia: {{ horario.dia }}</ion-label>
             <ion-label size="small" class="ion-text-center">Professor: {{ horario.disciplina.professor.nome }}</ion-label>
-            <ion-label size="small" class="ion-text-center">Materia: {{ horario.disciplina.materia }}</ion-label>
+            <ion-label size="small" class="ion-text-center">Matéria: {{ horario.disciplina.materia }}</ion-label>
             <ion-label size="small" class="ion-text-center">Horário Início: {{ formatarHorario(horario.horarioInicio) }}</ion-label>
             <ion-button (click)="salvaAgendamento(horario)" color="success">Agendar</ion-button>
           </ion-item>
@@ -27,7 +35,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>
 
 <ion-footer [translucent]="true" class="navebar" *ngIf="userType == 'aluno'">

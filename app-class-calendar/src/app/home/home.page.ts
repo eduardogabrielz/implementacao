@@ -15,15 +15,12 @@ export class HomePage {
   public usuario:any
   public userType:any
   monitoriaType:any='monitoria'
-  itens:any
+  horarioType:any='horario'
+  itens: any = [];
   idMonitoria: any;
   estado:any
   constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
   
-  goCadastro(){
-    this.navCtrl.navigateForward('cadastros')
-  }
-
   public atualizar(monitoria:any) {
     let newObj: any = {
       idMonitoria: monitoria.idMonitoria,
@@ -33,6 +30,7 @@ export class HomePage {
       },
       horario:{
         idHorario: monitoria.horario.idHorario,
+        disponivel: false
       }
     };
 
@@ -52,30 +50,14 @@ export class HomePage {
     await alert.present();
   }
 
+  todosHorariosIndisponiveis(itens: any []): boolean {
+    return this.itens.every((monitoria: { estado: any; }) => monitoria.estado === false);
+  }
+
   goHome(){
     this.route.queryParams.subscribe(params => {
       this.usuario = params['usuario'];
       this.userType = params['userType']});
-  }
-
-  // goProfessores() {
-  //   this.navCtrl.navigateForward('dados-professor', {
-  //     queryParams: { button: 'professores' }
-  //   })
-  // }
-  
-  // goAlunos(){
-  //   this.navCtrl.navigateForward('dados-aluno')
-  // }
-
-  // goTecnicos(){
-  //   this.navCtrl.navigateForward('dados-tecnico')
-  // }
-
-  goMaterias() {
-    this.navCtrl.navigateForward('dados-professor', {
-      queryParams: { button: 'materias' }
-    })
   }
 
   goAgendamento(){
@@ -101,6 +83,13 @@ export class HomePage {
 
   public getAllDados(){
     this.service.getAllMonitoria(this.monitoriaType+'s').then(dados => {
+      this.itens = dados;
+      console.log(this.itens)
+    })
+  }
+
+  public getAll(){
+    this.service.getAllMonitoria(this.horarioType+'s').then(dados => {
       this.itens = dados;
       console.log(this.itens)
     })

@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="Voltar"></ion-back-button>
+    <ion-title class="ion-text-center">ClassCalendar</ion-title>
+    <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
+      <ion-menu-button class="teste" menu="main-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Dados de Professores</ion-title>
-    <ion-button slot="end" color="success" shape="round" (click)="ngOnInit()">Atualizar</ion-button>
+    <ion-button slot="end" color="success" shape="round" (click)="getAllDados()">Atualizar</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
 
   <ion-grid *ngIf="button == 'professores'">
     <ion-row>
-      <ion-col class="ion-text-center" *ngFor="let professor of itens; let ix = index">
+      <ion-col size="12" size-md="6" size-lg="4" class="ion-text-center" *ngFor="let professor of itens; let ix = index">
         <ion-item >
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 24px;"></ion-icon>
@@ -30,7 +30,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid *ngIf="button == 'materias'">
+  <ion-grid *ngIf="button == 'disciplinas'">
     <ion-row>
       <ion-col class="ion-text-center" *ngFor="let professor of itens; let ix = index">
         <ion-item>
@@ -43,6 +43,21 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-content>
+
+<ion-footer [translucent]="true" class="navebar" *ngIf="userType == 'tecnico'">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6" class="icones">
+        <ion-icon (click)="goHome()" name="home"></ion-icon>
+      </ion-col>
+
+      <ion-col size="6" class="icones">
+        <ion-icon (click)="goPerfil()" name="person" size="lar"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
 
 
 

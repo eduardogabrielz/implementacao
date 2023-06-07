@@ -1,6 +1,7 @@
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { DadosService } from '../api/dados.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-horario',
@@ -9,12 +10,14 @@ import { DadosService } from '../api/dados.service';
 })
 export class HorarioPage implements OnInit {
   
-  materias:any;
+  materias:any = [];
+  public usuario: any;
+  public userType: any;
   disciplinaType:any = 'disciplinas';
-  userType: any = 'professores';
-  itens:any
+  userGroup: any = 'professores';
+  itens:any = []
 
-  constructor(private serviceMaterias: DadosService, private service: DadosService, private navCtrl: NavController) { }
+  constructor(private route: ActivatedRoute, private serviceMaterias: DadosService, private service: DadosService, private navCtrl: NavController) { }
 
   public getAll(){
     this.serviceMaterias.getAll(this.disciplinaType).then(dados => {
@@ -24,7 +27,7 @@ export class HorarioPage implements OnInit {
   }
 
   public getAllDados(){
-    this.service.getAllDados(this.userType).then(dados => {
+    this.service.getAllDados(this.userGroup).then(dados => {
       this.itens = dados;
       console.log(this.itens)
     })
@@ -32,12 +35,32 @@ export class HorarioPage implements OnInit {
 
   public irHorarioAgendamento(materia:any){
     this.navCtrl.navigateForward('materia', {
-      queryParams: {materia: materia }
+      queryParams: {materia: materia,
+                    usuario: this.usuario,
+                    userType: this.userType }
     });
   }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
   ngOnInit() {
     this.getAll();
     this.getAllDados();
+    this.route.queryParams.subscribe(params => {
+      this.usuario = params['usuario'];
+      this.userType = params['userType']});
   }
 
 }

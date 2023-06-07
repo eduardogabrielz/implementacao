@@ -16,8 +16,8 @@ export class AgendamentoPage implements OnInit {
   public horarioSelecionado: any;
   horario:any
   idHorario:any
-  itens:any
-  items:any
+  itens: any = []
+  items: any = []
   horarioType:any = 'horario'
   monitoriaType:any='monitoria'
   
@@ -37,11 +37,10 @@ export class AgendamentoPage implements OnInit {
     })
   }
 
-  agendamentoExistente(horario: any){
-    return this.items.some((items: { horario: any; }) => items.horario.idHorario === horario.idHorario);
+  todosHorariosIndisponiveis(itens: any []): boolean {
+    return this.itens.every((itens: { disponivel: any; }) => itens.disponivel === false);
   }
-   
-
+  
   formatarHorario(horarioNumerico: number){
     const horarioString = horarioNumerico.toString();
     const hora = horarioString.substring(0, horarioString.length - 2);

@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>ClassCalendar</ion-title>
+    <ion-title class="ion-text-center">ClassCalendar</ion-title>
+    <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
+      <ion-menu-button class="teste" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
     <ion-button slot="end" color="success" shape="round" (click)="getAllDados()">Atualizar</ion-button>
   </ion-toolbar>
 </ion-header>
@@ -10,58 +13,65 @@
   <ion-grid *ngIf="userType == 'aluno'"> 
     <ion-row>
       <ion-col size="12">
-        <ng-container *ngFor="let monitoria of itens">
-          <ion-row class="ion-justify-content-center" *ngIf="usuario.idAluno === monitoria.aluno.idAluno" class="ion-padding">
-            <ion-row *ngIf="monitoria.estado === true">
-              <ion-col>
-                Dia: {{monitoria.horario.dia}}
+        <ng-container *ngIf="itens.length > 0">
+          <ng-container *ngIf="!todosHorariosIndisponiveis(itens)">
+            <ion-row class="ion-justify-content-center" *ngFor="let monitoria of itens; let ix = index">
+              <ion-col size="2" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">
+                Dia: {{ monitoria.horario.dia }}
               </ion-col>
-              <ion-col>
-                Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio)}}
+              <ion-col size="2" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">
+                Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio) }}
               </ion-col>
-              <ion-col>  
+              <ion-col size="2" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">  
                 Professor: {{ monitoria.horario.disciplina.professor.nome }}
               </ion-col>  
-              <ion-col>
-                Materia: {{ monitoria.horario.disciplina.materia }}
+              <ion-col size="2" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">
+                Matéria: {{ monitoria.horario.disciplina.materia }}
               </ion-col>
-            </ion-row>              
-          </ion-row>        
+            </ion-row>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="todosHorariosIndisponiveis(itens) || itens.length === 0">
+          <p>Você não tem nenhum agendamento ativo no sistema.</p>
         </ng-container>
       </ion-col>    
     </ion-row> 
   </ion-grid>
+  
 
   <ion-grid *ngIf="userType == 'professor'">
     <ion-row>
       <ion-col size="12">
-        <ng-container *ngFor="let monitoria of itens">
-          <ion-row class="ion-justify-content-center" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor">
-            <ion-row *ngIf="monitoria.estado === true">
-              <ion-col size="2">
+        <ng-container *ngIf="itens.length > 0">
+          <ng-container *ngIf="!todosHorariosIndisponiveis(itens)">
+            <ion-row class="ion-justify-content-center" *ngFor="let monitoria of itens; let ix = index">>
+              <ion-col size="2" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
                 Dia: {{ monitoria.horario.dia }}
               </ion-col>
-              <ion-col size="2">
-                Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio)}}
+              <ion-col size="2" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
+                Horário de Início: {{ formatarHorario(monitoria.horario.horarioInicio) }}
               </ion-col>
-              <ion-col size="2">  
+              <ion-col size="2" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">  
                 Aluno: {{ monitoria.aluno.nome }}
               </ion-col>  
-              <ion-col size="2">
+              <ion-col size="2" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
                 Matéria: {{ monitoria.horario.disciplina.materia }}
               </ion-col>
-              <ion-button color="success" (click)="atualizar(monitoria)" class="ion-justify-content-center">Finalizar</ion-button>      
+              <ion-button *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true" color="success" (click)="atualizar(monitoria)" class="ion-justify-content-center">Finalizar</ion-button>      
             </ion-row>              
-          </ion-row>        
+          </ng-container>
         </ng-container>
+        <ng-container *ngIf="todosHorariosIndisponiveis(itens) || itens.length === 0">
+          <p>Você não tem nenhum agendamento ativo no sistema.</p>
+        </ng-container>          
       </ion-col>    
-    </ion-row>    
-  </ion-grid>
+    </ion-row>            
+  </ion-grid>  
   
   <ion-grid *ngIf="userType == 'tecnico'"> 
     <ion-row>
-      <ion-col>
-        <ion-button (click)="goMaterias()">materia</ion-button>
+      <ion-col class="ion-text-center">
+        Bem vindo, {{usuario.nome}}
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -85,6 +95,21 @@
   <ion-toolbar>
     <ion-row>
      <ion-col size="12" class="icones">
+        <ion-icon (click)="goPerfil()" name="person" size="lar"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+
+<ion-footer [translucent]="true" class="navebar" *ngIf="userType == 'tecnico'">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6" class="icones">
+        <ion-icon (click)="goHome()" name="home"></ion-icon>
+      </ion-col>
+
+      <ion-col size="6" class="icones">
         <ion-icon (click)="goPerfil()" name="person" size="lar"></ion-icon>
       </ion-col>
     </ion-row>

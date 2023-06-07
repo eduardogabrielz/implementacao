@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CadastroFormService } from '../api/cadastro-form.service';
 import { DeletarService } from '../api/deletar.service';
 import { DadosService } from '../api/dados.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-disciplina',
@@ -12,19 +13,14 @@ import { DadosService } from '../api/dados.service';
 export class DisciplinaPage implements OnInit {
 
   public professor: any;
+  public usuario: any
+  public userType:any
   idProfessor:any
   disciplinaType:any = 'disciplina';
   materia:any;
-  materias:any;
+  materias:any = [];
 
-  constructor(private route: ActivatedRoute, private service: CadastroFormService, private exclusaoMateria : DeletarService, private serviceMaterias: DadosService) { }
-
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.professor = params['professor'];
-      this.getAll();
-    });
-  }
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: CadastroFormService, private exclusaoMateria : DeletarService, private serviceMaterias: DadosService) { }
 
   public adicionarMateria() {
     let newObj: any = {
@@ -54,6 +50,29 @@ export class DisciplinaPage implements OnInit {
       this.materias = dados;
       console.log(this.materias)
     })
+  }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  ngOnInit() {
+    this.getAll();
+    this.route.queryParams.subscribe(params => {
+      this.professor = params['professor'];
+      this.usuario = params['usuario'];
+      this.userType = params['userType'];
+    });
   }
 
 }

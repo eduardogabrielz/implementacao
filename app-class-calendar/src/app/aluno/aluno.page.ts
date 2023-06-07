@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EditarFormService } from '../api/editar-form.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-aluno',
@@ -10,7 +11,9 @@ import { EditarFormService } from '../api/editar-form.service';
 export class AlunoPage implements OnInit {
 
   public aluno: any;
-  userType: any = 'aluno';
+  public usuario: any
+  public userType:any
+  userGroup: any = 'aluno';
   idAluno: any;
   nomeATT: any;
   cpfATT: any;
@@ -20,7 +23,7 @@ export class AlunoPage implements OnInit {
   status: any;
   turmaATT:any
 
-  constructor(private route: ActivatedRoute, private service: EditarFormService) {
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: EditarFormService) {
     this.route.queryParams.subscribe(params => {
       this.aluno = params['aluno'];
       this.idAluno = this.aluno.idAluno;
@@ -44,13 +47,30 @@ export class AlunoPage implements OnInit {
       turma : this.turmaATT
     };
 
-    this.service.putDados(newObj, this.userType).then(dados => {
+    this.service.putDados(newObj, this.userGroup).then(dados => {
       console.log('UPDATE');
       console.log(dados);
     });
   }
 
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.usuario = params['usuario'];
+      this.userType = params['userType']});
   }
 
 }

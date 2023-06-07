@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DadosService } from '../api/dados.service';
-import { NavController} from '@ionic/angular';
+import { AlertController, NavController} from '@ionic/angular';
 import { DeletarService } from '../api/deletar.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,15 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DadosProfessorPage implements OnInit {
 
-  itens : any
-  userType: any = 'professor';
-  button: any;
+  itens : any = []
+  public usuario: any
+  public userType:any
+  userGroup:any = 'professor'
+  public button: any
   
-  constructor(private route: ActivatedRoute, private service: DadosService, private navCtrl: NavController, private exclusaoProfessor : DeletarService) { }
+  constructor(private alertController: AlertController, private route: ActivatedRoute, private service: DadosService, private navCtrl: NavController, private exclusaoProfessor: DeletarService) { }
 
-  /* recupera todos os objetos do banco */
   public getAllDados(){
-    this.service.getAllDados(this.userType+'es').then(dados => {
+    this.service.getAllDados(this.userGroup+'es').then(dados => {
       this.itens = dados;
       console.log(this.itens)
     })
@@ -27,29 +28,58 @@ export class DadosProfessorPage implements OnInit {
 
   public irnoProfessor(professor:any) {
     this.navCtrl.navigateForward('professor', {
-      queryParams: { professor: professor }
+      queryParams: { professor: professor,
+                    usuario: this.usuario,
+                    userType: this.userType }
     });
   }
 
   public irnaDisciplina(professor:any) {
     this.navCtrl.navigateForward('disciplina', {
-      queryParams: { professor: professor }
+      queryParams: { professor: professor,
+                    usuario: this.usuario,
+                    userType: this.userType }
     });
   }
 
-  public excluirProfessor(professor:any){
-    this.exclusaoProfessor.deleteUsuarios(this.userType, professor.idProfessor).then((professor) => {
-      console.log('Delete')
-      console.log('Materia excluida: '+ professor)
+  public async excluirProfessor(professor:any){
+    await this.exibirAlerta(professor.nome +' excluido, por favor, atualize a pagina');
+    this.exclusaoProfessor.deleteUsuarios(this.userGroup, professor.idProfessor).then(() => {
       this.getAllDados();
     })
   }
 
-  ngOnInit() {
-    const button = this.route.snapshot.queryParams['button'];
-    this.button = button;
-    this.getAllDados();
+
+  async exibirAlerta (mensagem: string){
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 
+  goHome(){
+    this.navCtrl.navigateForward('home', {
+      queryParams:  { usuario: this.usuario,
+                    userType: this.userType }
+    });
+  }
+
+  goPerfil(){
+    this.navCtrl.navigateForward('perfil', {
+      queryParams: { usuario: this.usuario,
+                     userType: this.userType }
+    });
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.usuario = params['usuario'];
+      this.userType = params['userType'];
+      this.button = params['button']});
+    this.getAllDados()
+  }
 
 }

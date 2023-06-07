@@ -11,8 +11,8 @@ export class EditarFormService {
   
   constructor(private http: HttpClient) { }
   
-  public putDados(obj: any, userType:any){
-    this.atualizaHost(userType)
+  public putDados(obj: any, userGroup:any){
+    this.atualizaHost(userGroup)
     return new Promise((ret) => {
       
       this.http.put(this.host, JSON.stringify(obj), this.options).subscribe(dados => {
@@ -22,8 +22,8 @@ export class EditarFormService {
     })
   }
 
-  public atualizaHost(userType:any){
-    const userTypePath = '/' + userType 
+  public atualizaHost(userGroup:any){
+    const userTypePath = '/' + userGroup 
 
   if (!this.host.includes(userTypePath)) {
     const slashIndex = this.host.lastIndexOf('/');

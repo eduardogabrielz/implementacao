@@ -22,8 +22,8 @@ export class DeletarService {
     });
   }
 
-  public deleteUsuarios(userType: any,id: any) {
-    this.atualizaHost(userType, id);
+  public deleteUsuarios(userGroup: any,id: any) {
+    this.atualizaHost(userGroup, id);
     return new Promise((ret) => {
 
       // Requisição DELETE
@@ -34,8 +34,8 @@ export class DeletarService {
   }
   
   
-  public atualizaHost(disciplinaType: any, id: any) {
-    const userTypePath = '/' + disciplinaType;
+  public atualizaHost(userGroup: any, id: any) {
+    const userTypePath = '/' + userGroup;
     const idPath = '/' + id;
   
     if (!this.host.includes(userTypePath)) {
