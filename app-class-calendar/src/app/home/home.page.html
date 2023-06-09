@@ -39,27 +39,31 @@
   
 
   <ion-grid *ngIf="userType == 'professor'">
-    <ng-container *ngIf="items.length === 0 || (todosMonitoriasIndisponiveis(items) && items.length > 0) || usuario.idProfessor != items.horario.disciplina.professor.idProfessor">
-      <h1>Você não tem nenhum agendamento ativo no sistema.</h1>
-    </ng-container>
-  
-    <ion-row *ngIf="itens.disponivel === true" class="quadrado-grid">
-      <ng-container *ngIf="(items.length > 0 && !todosMonitoriasIndisponiveis(items))">
-        <ion-col size="12" *ngFor="let monitoria of items; let ix = index">
-          <div class="div" >
-            <p>Dia: {{ monitoria.horario.dia }}</p>
-            <p>Aluno: {{ monitoria.aluno.nome }}</p>
-          </div>
-          <div class="div2" >
-            <ion-buttons>
-              <ion-button fill="solid" expand="block" shape="round">{{ formatarHorario(monitoria.horario.horarioInicio) }}</ion-button>
-            </ion-buttons>
-          </div>
-          <p >Matéria: {{ monitoria.horario.disciplina.materia }}</p>
-          <ion-button color="success" shape="round" (click)="atualizar(monitoria)">Finalizar</ion-button>
-        </ion-col>
+    <ng-container *ngIf="usuario" >
+      <ng-container *ngIf="items.length === 0 || (todosMonitoriasIndisponiveis(items) && items.length > 0)|| !verificarIdProfessor(items, usuario)">
+        <h1>Você não tem nenhum agendamento ativo no sistema.</h1>
       </ng-container>
-    </ion-row>            
+    </ng-container>  
+
+      <ng-container *ngIf="usuario">
+        <ion-row class="quadrado-grid" >
+          <ng-container *ngFor="let monitoria of items; let ix = index">
+            <ion-col size="12" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor">
+              <div class="div">
+                <p>Dia: {{ monitoria.horario.dia }}</p>
+                <p>Aluno: {{ monitoria.aluno.nome }}</p>
+              </div>
+              <div class="div2" >
+                <ion-buttons>
+                  <ion-button fill="solid" expand="block" shape="round">{{ formatarHorario(monitoria.horario.horarioInicio) }}</ion-button>
+                </ion-buttons>
+              </div>
+              <p >Matéria: {{ monitoria.horario.disciplina.materia }}</p>
+              <ion-button (click)="atualizar(monitoria)" color="success" class="ion-justify-content-center">Finalizar</ion-button> 
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ng-container>            
   </ion-grid>  
   
   <ion-grid *ngIf="userType == 'tecnico'"> 

@@ -68,7 +68,15 @@ export class HomePage {
     return false;
   }
 
-
+  verificarIdProfessor(items: any[], usuario: any): boolean {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].horario.disciplina.professor.idProfessor === usuario.idProfessor) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   goHome(){
     this.route.queryParams.subscribe(params => {
       this.usuario = params['usuario'];
