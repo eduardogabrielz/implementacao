@@ -20,7 +20,7 @@
       <ng-container *ngIf="usuario">
         <ion-row class="quadrado-grid" >
           <ng-container *ngFor="let monitoria of items; let ix = index">
-            <ion-col size="12" *ngIf="usuario.idAluno === monitoria.aluno.idAluno">
+            <ion-col size="12" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">
               <div class="div">
                 <p>Dia: {{ monitoria.horario.dia }}</p>
                 <p>Professor: {{ monitoria.horario.disciplina.professor.nome }}</p>
@@ -48,7 +48,7 @@
       <ng-container *ngIf="usuario">
         <ion-row class="quadrado-grid" >
           <ng-container *ngFor="let monitoria of items; let ix = index">
-            <ion-col size="12" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor">
+            <ion-col size="12" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
               <div class="div">
                 <p>Dia: {{ monitoria.horario.dia }}</p>
                 <p>Aluno: {{ monitoria.aluno.nome }}</p>
