@@ -32,7 +32,7 @@
       <ion-button (click)="adicionarMateria()">Adicionar</ion-button>
     </ion-item>
   
-    <ng-container *ngFor="let materia of materias; let ix = index">
+    <ng-container *ngFor="let materia of itens; let ix = index">
       <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor">
         <ion-label>{{ materia.materia }}</ion-label>
         <ion-button color="danger" size="small" (click)="excluirMateria(materia)">Excluir</ion-button>

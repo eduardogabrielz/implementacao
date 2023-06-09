@@ -77,10 +77,10 @@
         <ng-container *ngIf="horario.disciplina.idDisciplina === materia.idDisciplina">
           <ion-col size="6">
             <ion-item>
-              <ion-label>Dia: {{horario.dia}}</ion-label>
-              <ion-label>Mês: {{horario.mes}}</ion-label>
-              <ion-label>Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-label>
-              <ion-label>Horário Final: {{formatarHorario(horario.horarioFim)}}</ion-label>
+              <ion-col>Dia: {{horario.dia}}</ion-col>
+              <ion-col>Mês: {{horario.mes}}</ion-col>
+              <ion-col>Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-col>
+              <ion-col>Horário Final: {{formatarHorario(horario.horarioFim)}}</ion-col>
               <ion-button color="danger" size="small" (click)="excluirHorario(horario)">Excluir</ion-button>
             </ion-item>
           </ion-col>

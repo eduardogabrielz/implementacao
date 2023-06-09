@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { CadastroFormService } from '../api/cadastro-form.service';
 import { ActivatedRoute } from '@angular/router';
 import { DadosService } from '../api/dados.service';
@@ -30,7 +30,7 @@ export class MateriaPage implements OnInit {
   materias:any = []
   horarioType:any = 'horario'
 
-  constructor(private exclusaoHorario: DeletarService, private route: ActivatedRoute, private navCtrl: NavController, private service: CadastroFormService, private allHorarios: DadosService) { }
+  constructor(private alertController: AlertController, private exclusaoHorario: DeletarService, private route: ActivatedRoute, private navCtrl: NavController, private service: CadastroFormService, private allHorarios: DadosService) { }
 
   public salvaHorario(){
     let newObj:any = {    
@@ -68,12 +68,21 @@ export class MateriaPage implements OnInit {
     return hora + ':' + minutos;
   }
   
-  public excluirHorario(horario: any) {
-    this.exclusaoHorario.deleteDados(this.horarioType, horario.idHorario).then((horario) => {
-      console.log('Delete')
-      console.log('Horario excluida: '+ horario)
+  public async excluirHorario(horario: any) {
+    await this.exibirAlerta('horario excluido, por favor, atualize a pagina');
+    this.exclusaoHorario.deleteDados(this.horarioType, horario.idHorario).then(() => {
       this.getAll();
     })
+  }
+
+  async exibirAlerta (mensagem: string){
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 
   goPerfil(){

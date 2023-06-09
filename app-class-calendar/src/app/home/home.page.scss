@@ -79,6 +79,7 @@ ion-content.conteudo {
 .footer {
   --ion-background-color: rgb(30, 144, 255);
 }
+
 .quadrado-grid {
   justify-content: center;
   align-items: center;
@@ -104,18 +105,6 @@ ion-content.conteudo {
 
     &:hover {
       transform: scale(1.1);
-    }
-
-
-    .icone-perf {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 90px;
-      padding-bottom: 10px;
-    }
-    ion-icon {
-      color:blue($color: #000000);
     }
 
     p{
@@ -151,6 +140,7 @@ ion-content.conteudo {
     
   }
 }
+
 @media (max-width: 600px) {
   .quadrado-grid ion-col {
     display: grid;
@@ -164,7 +154,8 @@ ion-content.conteudo {
     font-size: 115px;
   } 
 }
-p {
+
+h1 {
   color: blue;
   text-align: center;
 } 

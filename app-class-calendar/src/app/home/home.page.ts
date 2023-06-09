@@ -17,8 +17,10 @@ export class HomePage {
   monitoriaType:any='monitoria'
   horarioType:any='horario'
   itens: any = [];
+  items:any = [];
   idMonitoria: any;
-  estado:any
+  estado:any;
+
   constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
   
   public atualizar(monitoria:any) {
@@ -30,7 +32,6 @@ export class HomePage {
       },
       horario:{
         idHorario: monitoria.horario.idHorario,
-        disponivel: false
       }
     };
 
@@ -50,9 +51,23 @@ export class HomePage {
     await alert.present();
   }
 
-  todosHorariosIndisponiveis(itens: any []): boolean {
-    return this.itens.every((monitoria: { estado: any; }) => monitoria.estado === false);
+  todosMonitoriasIndisponiveis(items: any []): boolean {
+    return this.items.every((items: { estado: any; }) => items.estado === false);
   }
+
+  checkHorarioDisponivel(itens: any[]): boolean {
+    return itens.some(horario => horario.disponivel === false);
+  }
+
+  verificarIdAluno(items: any[], usuario: any): boolean {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].aluno.idAluno === usuario.idAluno) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
   goHome(){
     this.route.queryParams.subscribe(params => {
@@ -83,8 +98,8 @@ export class HomePage {
 
   public getAllDados(){
     this.service.getAllMonitoria(this.monitoriaType+'s').then(dados => {
-      this.itens = dados;
-      console.log(this.itens)
+      this.items = dados;
+      console.log(this.items)
     })
   }
 
@@ -97,9 +112,12 @@ export class HomePage {
 
   ngOnInit() {
     this.getAllDados()
+    this.getAll()
     this.route.queryParams.subscribe(params => {
       this.usuario = params['usuario'];
       this.userType = params['userType']});
   }
-  }
+
+}
+
 

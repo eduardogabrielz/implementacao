@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CadastroFormService } from '../api/cadastro-form.service';
 import { DeletarService } from '../api/deletar.service';
 import { DadosService } from '../api/dados.service';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-disciplina',
@@ -18,9 +18,9 @@ export class DisciplinaPage implements OnInit {
   idProfessor:any
   disciplinaType:any = 'disciplina';
   materia:any;
-  materias:any = [];
+  itens:any = [];
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private service: CadastroFormService, private exclusaoMateria : DeletarService, private serviceMaterias: DadosService) { }
+  constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private service: CadastroFormService, private exclusaoMateria : DeletarService, private serviceMaterias: DadosService) { }
 
   public adicionarMateria() {
     let newObj: any = {
@@ -37,19 +37,28 @@ export class DisciplinaPage implements OnInit {
     })
   }
 
-  public excluirMateria(materia: any) {
-    this.exclusaoMateria.deleteDados(this.disciplinaType, materia.idDisciplina).then((materia) => {
-      console.log('Delete')
-      console.log('Materia excluida: '+ materia)
+  public async excluirMateria(materia: any) {
+    await this.exibirAlerta(materia.materia +' excluido, por favor, atualize a pagina');
+    this.exclusaoMateria.deleteDados(this.disciplinaType, materia.idDisciplina).then(() => {
       this.getAll();
     })
   }
  
   public getAll(){
     this.serviceMaterias.getAll(this.disciplinaType+'s').then(dados => {
-      this.materias = dados;
-      console.log(this.materias)
+      this.itens = dados;
+      console.log(this.itens)
     })
+  }
+  
+  async exibirAlerta (mensagem: string){
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: mensagem,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
   }
 
   goPerfil(){

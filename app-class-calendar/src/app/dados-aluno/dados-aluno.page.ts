@@ -51,13 +51,6 @@ export class DadosAlunoPage implements OnInit {
     await alert.present();
   }
 
-  // goAgendamento(){
-  //   this.navCtrl.navigateForward('agendamento', {
-  //     queryParams: { usuario: this.usuario,
-  //                    userType: this.userType }
-  //   });
-  // }
-
   goHome(){
     this.navCtrl.navigateForward('home', {
       queryParams:  { usuario: this.usuario,
