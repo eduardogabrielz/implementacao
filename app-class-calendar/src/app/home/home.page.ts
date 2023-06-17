@@ -168,7 +168,25 @@ export class HomePage {
     await alert.present();
   }
 
-
+  async goExit() {
+    const alert = await this.alertController.create({
+      header: 'Confirmação',
+      message: 'Tem certeza que deseja sair?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Sair',
+          handler: () => {
+            this.navCtrl.navigateForward('login')
+          }
+        }
+      ]
+    });
+      await alert.present();
+  }
+  
 
   ngOnInit() {
     this.getAllDados()

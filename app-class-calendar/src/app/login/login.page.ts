@@ -53,6 +53,8 @@ export class LoginPage implements OnInit {
       const { ...userInfo } = user;
       console.log('Informações do usuário:', userInfo);
       await this.exibirAlerta('Login bem-sucedido');
+      this.senha = ""
+      this.cpf = ""
       this.navCtrl.navigateForward('home', {
         queryParams: { usuario: userInfo,
                       userType: this.userType}

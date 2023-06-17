@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   public usuario:any
   public userType:any
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private router: Router) { }
+  constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private router: Router) { }
 
   goCadastro(){
     this.navCtrl.navigateForward('cadastros', {
@@ -56,6 +56,25 @@ export class AppComponent {
       queryParams: { usuario: this.usuario,
                     userType: this.userType }
     })
+  }
+
+  async goExit() {
+    const alert = await this.alertController.create({
+      header: 'Confirmação',
+      message: 'Tem certeza que deseja sair?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Sair',
+          handler: () => {
+            this.navCtrl.navigateForward('login')
+          }
+        }
+      ]
+    });
+      await alert.present();
   }
 
   exibirMenu(): boolean {
