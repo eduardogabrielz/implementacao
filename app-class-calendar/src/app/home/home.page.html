@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="header">
     <ion-title class="ion-text-center">ClassCalendar</ion-title>
     <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
       <ion-menu-button class="teste" menu="main-menu"></ion-menu-button>
@@ -18,7 +18,7 @@
     </ng-container>  
 
       <ng-container *ngIf="usuario">
-        <ion-row class="quadrado-grid" >
+        <ion-row  class="quadrado-grid" >
           <ng-container *ngFor="let monitoria of items; let ix = index">
             <ion-col size="12" *ngIf="usuario.idAluno === monitoria.aluno.idAluno && monitoria.estado === true">
               <div class="div">
@@ -46,7 +46,7 @@
     </ng-container>  
 
       <ng-container *ngIf="usuario">
-        <ion-row class="quadrado-grid" >
+        <ion-row class="quadrado-grid">
           <ng-container *ngFor="let monitoria of items; let ix = index">
             <ion-col size="12" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
               <div class="div">
@@ -58,8 +58,11 @@
                   <ion-button fill="solid" expand="block" shape="round">{{ formatarHorario(monitoria.horario.horarioInicio) }}</ion-button>
                 </ion-buttons>
               </div>
-              <p >Matéria: {{ monitoria.horario.disciplina.materia }}</p>
-              <ion-button (click)="atualizar(monitoria)" color="success" class="ion-justify-content-center">Finalizar</ion-button> 
+              <p>Matéria: {{ monitoria.horario.disciplina.materia }}</p>
+              <div class="div">
+                <ion-button expand="block" (click)="atualizar(monitoria)" shape="round" color="success">Finalizar</ion-button>
+                <ion-button expand="block" (click)="openPopup(monitoria)" shape="round" color="warning">Feedback</ion-button>            
+              </div>          
             </ion-col>
           </ng-container>
         </ion-row>

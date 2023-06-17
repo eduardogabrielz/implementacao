@@ -20,6 +20,7 @@ export class HomePage {
   items:any = [];
   idMonitoria: any;
   estado:any;
+  userInput:any;
 
   constructor(private alertController: AlertController, private navCtrl: NavController, private route: ActivatedRoute, private service: DadosService, private modificar: EditarFormService) {}
   
@@ -27,6 +28,7 @@ export class HomePage {
     let newObj: any = {
       idMonitoria: monitoria.idMonitoria,
       estado: false,
+      feedback: this.userInput,
       aluno:{
         idAluno: monitoria.aluno.idAluno,
       },
@@ -37,6 +39,25 @@ export class HomePage {
 
     this.modificar.putDados(newObj, this.monitoriaType).then(async dados => {
       await this.exibirAlerta('Finalização da Monitoria, por favor, atualize a pagina');
+      console.log(dados);
+    });
+  }
+
+  public feedback(monitoria:any) {
+    let newObj: any = {
+      idMonitoria: monitoria.idMonitoria,
+      estado: true,
+      feedback: this.userInput,
+      aluno:{
+        idAluno: monitoria.aluno.idAluno,
+      },
+      horario:{
+        idHorario: monitoria.horario.idHorario,
+      }
+    };
+
+    this.modificar.putDados(newObj, this.monitoriaType).then(async dados => {
+      await this.exibirAlerta('Feedback concluido');
       console.log(dados);
     });
   }
@@ -117,6 +138,37 @@ export class HomePage {
       console.log(this.itens)
     })
   }
+
+  async openPopup(monitoria:any) {
+    const alert = await this.alertController.create({
+      header: 'Feedback para o aluno: ' + monitoria.aluno.nome,
+      inputs: [
+        {
+          name: 'userInput',
+          type: 'text',
+          placeholder: 'De seu feedback',
+          value: this.userInput
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Enviar',
+          handler: (data) => {
+            this.userInput = data.userInput;
+            this.feedback(monitoria)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
 
   ngOnInit() {
     this.getAllDados()

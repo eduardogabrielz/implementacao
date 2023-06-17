@@ -1,12 +1,10 @@
-<ion-header [translucent]="true" class="header">
-  <ion-toolbar>
-    <ion-title class="titulo">
-      Materias
-    </ion-title>
-    <ion-button slot="end" color="success" shape="round" (click)="getAll()">Atualizar</ion-button>
-    <ion-buttons slot="start">
-      <ion-menu-button class="icone-menu"></ion-menu-button>
+<ion-header [translucent]="true">
+  <ion-toolbar class="header">
+    <ion-title class="ion-text-center">Materias</ion-title>
+    <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
+      <ion-menu-button class="teste" menu="main-menu"></ion-menu-button>
     </ion-buttons>
+    <ion-button slot="end" color="success" shape="round" (click)="getAll()">Atualizar</ion-button>
   </ion-toolbar>
 </ion-header>
 
