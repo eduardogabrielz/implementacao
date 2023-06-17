@@ -21,8 +21,8 @@
 
   <ion-grid *ngIf="button == 'professores'">
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="4" class="ion-text-center" *ngFor="let professor of itens; let ix = index">
-        <ion-item >
+      <ion-col size="12" size-md="6" size-lg="3" *ngFor="let professor of itens; let ix = index">
+        <ion-item class="itemEstilo">
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 24px;"></ion-icon>
           </ion-avatar>
@@ -36,8 +36,8 @@
 
   <ion-grid *ngIf="button == 'disciplinas'">
     <ion-row>
-      <ion-col class="ion-text-center" *ngFor="let professor of itens; let ix = index">
-        <ion-item>
+      <ion-col size="12" size-md="6" size-lg="3" *ngFor="let professor of itens; let ix = index">
+        <ion-item class="itemEstilo">
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 24px;"></ion-icon>
           </ion-avatar>

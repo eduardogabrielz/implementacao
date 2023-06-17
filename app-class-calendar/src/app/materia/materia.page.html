@@ -74,7 +74,7 @@
       <ng-container *ngFor="let horario of itens; let ix = index">
         <ng-container *ngIf="horario.disciplina.idDisciplina === materia.idDisciplina">
           <ion-col size="6">
-            <ion-item>
+            <ion-item class="itemEstilo">
               <ion-col>Dia: {{horario.dia}}</ion-col>
               <ion-col>Mês: {{horario.mes}}</ion-col>
               <ion-col>Horário Início: {{formatarHorario(horario.horarioInicio)}}</ion-col>

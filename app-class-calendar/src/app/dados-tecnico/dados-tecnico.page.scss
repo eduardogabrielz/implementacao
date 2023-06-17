@@ -1,4 +1,10 @@
 h1{
     color: blue;
     text-align: center;
+}
+
+.itemEstilo{
+    --ion-item-background: rgb(192, 192, 192);
+    border-radius: 10px;
+    align-items: center;
 }  

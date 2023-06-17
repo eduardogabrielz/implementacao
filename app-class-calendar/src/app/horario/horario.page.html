@@ -17,7 +17,7 @@
   <ion-grid>
     <ion-row *ngFor="let professor of itens; let ix = index">
       <ng-container *ngFor="let materia of materias; let ix = index">
-        <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor">
+        <ion-item *ngIf="materia.professor.idProfessor === professor.idProfessor" class="itemEstilo">
           <ion-avatar slot="start">
             <ion-icon name="person-circle-outline" style="font-size: 34px;"></ion-icon>
           </ion-avatar>
